@@ -1,14 +1,17 @@
 <?php
 session_start();
-if(!isset($_SESSION['salesLogin'])){header('Location:../index.php');}
+include "../base/db.php";
+include '../base/deliveryNoteDownload.php';
+if(!isset($_SESSION['_salesLogin'])){header('Location:../index.php');}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-	<?php include "../header/header.php"; ?>
+<?php include "../header/header_css.php"; ?>
 	<body class="main-body">
 		<!-- Page -->
 		<div class="page">
 			<!-- main-content opened -->
+			<?php include "../header/header.php";?>
 			<div class="main-content horizontal-content">
 				<!-- container opened -->
 				<div class="container">
@@ -17,16 +20,6 @@ if(!isset($_SESSION['salesLogin'])){header('Location:../index.php');}
 						<div class="my-auto">
 							<div class="d-flex">
 								<h4 class="content-title mb-0 my-auto">Order</h4><span class="text-muted mt-1 tx-13 ml-2 mb-0">/ Approve Order</span>
-							</div>
-						</div>
-						<div class="d-flex my-xl-auto right-content">
-							<div class="pr-1 mb-3 mb-xl-0">
-								<button type="button" class="btn btn-info btn-icon mr-2"><i class="mdi mdi-filter-variant"></i></button>
-							</div>
-							<div class="mb-3 mb-xl-0">
-								<div class="btn-group dropdown">
-									<button id="newOrderAdd" class="modal-effect btn btn-primary" data-effect="effect-scale" data-toggle="modal" data-target="#newOrderModal" type="button">New Order</button>
-								</div>
 							</div>
 						</div>
 					</div>
