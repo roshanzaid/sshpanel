@@ -265,10 +265,8 @@ function loadCat(){
                     success: function(response){
                         $('.statusMsg').html('');
                         if(response.status === 1){
-                            //FORM TO RESET AFTER SUBMISSION
-                            $('#formNewOrder')[0].reset();
-                            //REPONSE MESSAGE
-                            $('.statusMsg').html('<p class="alert alert-success">'+response.message+'</p>'); 
+                            $("#formNewOrder")[0].reset();
+                            $('#exampleone').DataTable().ajax.reload();
                             //TEST METHOD TO RESET DROPDOWN
                             postOrderSave();
 							$('#exampleone').DataTable().ajax.reload();

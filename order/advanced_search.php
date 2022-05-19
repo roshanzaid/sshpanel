@@ -186,7 +186,7 @@ function loadSalesPerson(){
 					"serverSide": 	true,
 					"paging"	:	true,
 					"searching"	:	true,
-					"sDom": 'lrtip',
+					"sDom": 'Brtip',
 					"iDisplayLength"	:	100,
 					"processData": false,
 					"ajax": {
@@ -364,5 +364,43 @@ function loadSalesPerson(){
 
 		<!-- custom js -->
 		<script src="../assets/js/custom.js"></script>
+		<script type="text/javascript">
+	  	// $( function() { $( "#search_fromdate" ).datepicker({ dateFormat: 'dd/mm/yy' }); } );
+		// Datapicker 
+		$( ".fc-datepicker" ).datepicker({
+			"dateFormat": "yy-mm-dd",
+			changeYear: true
+		});
+	  	// $( function() { $( "#search_todate" ).datepicker({ dateFormat: 'dd/mm/yy' }); } );
+
+ 		</script>
+		<!--   <script type="text/javascript">
+		
+		$(document).ready(function(){
+			$.fn.dataTable.ext.search.push(
+			function (settings, data, dataIndex) {
+				var min = $('#minimumdate').datepicker("getDate");
+				var max = $('#maximumdate').datepicker("getDate");
+				var startDate = new Date(data[1]);
+				if (min == null && max == null) { return true; }
+				if (min == null && startDate <= max) { return true;}
+				if(max == null && startDate >= min) {return true;}
+				if (startDate <= max && startDate >= min) { return true; }
+				return false;
+			}
+			);
+
+		
+				$("#minimumdate").datepicker({ onSelect: function () { tableone.draw(); }, changeMonth: true, changeYear: true });
+				$("#maximumdate").datepicker({ onSelect: function () { tableone.draw(); }, changeMonth: true, changeYear: true });
+				var table = $('#exampleone').DataTable();
+
+				// Event listener to the two range filtering inputs to redraw on input
+				$('#minimumdate, #maximumdate').change(function () {
+					tableone.draw();
+				});
+			});
+
+	</script> -->
 	</body>
 </html>

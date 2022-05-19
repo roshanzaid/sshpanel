@@ -1,0 +1,16 @@
+USER ROLE -> FACTORY USER
+=========================
+
+1. DataTables warning: table id=exampleone - Requested unknown parameter '13' for row 0, column 13. For more information about this error, please see http://datatables.net/tn/4
+
+2. DataTables warning: table id=exampletwo - Requested unknown parameter '13' for row 0, column 13. For more information about this error, please see http://datatables.net/tn/4
+
+3. DataTables warning: table id=examplethree - Requested unknown parameter '13' for row 0, column 13. For more information about this error, please see http://datatables.net/tn/4
+
+4. DataTables warning: table id=exampleeight - Requested unknown parameter '13' for row 0, column 13. For more information about this error, please see http://datatables.net/tn/4
+
+
+11 MAY 2022
+Undefined Variable -> when username and pass changed manually
+==============================================================
+1. Warning: Undefined variable $userrole in C:\xamppnew\htdocs\ssp\header\header.php on line 81

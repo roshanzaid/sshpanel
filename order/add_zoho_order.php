@@ -31,7 +31,7 @@
 			app_log("'".date('d-m-Y H:i:s')."' : User '".$_SESSION['userName']."'s Session would be expired in '".$pendingSessionTime."'");
 		}
 	}
-
+	
 	//LOG MANAGEMENT
 	function app_log($message){
 		date_default_timezone_set('Asia/Dubai');
@@ -48,19 +48,19 @@
 
 	//RETRIEVES RECORD FROM ADD ORDER MODAL
 	// if (isset($_POST['_newInvoiceId']) || isset($_POST['_newDeliveryDate']) || isset($_POST['_newItemName']) || isset($_POST['_newItemColor']) || isset($_POST['_newItemSize']) || isset($_POST['_newItemFrom']) || isset($_POST['_newDeliveryLocation']) || isset($_POST['_newStatus']) || isset($_POST['_newQuantity']) || isset($_POST['_newOrderNote']) || isset($_FILES['_newDeliveryNoteFile']) || isset($_POST['_newSalesConsultant']) || isset($_FILES['_newOrderImage']) || isset($_POST['_newCat_Id'])){
-	if (isset($_POST['_newInvoiceId']) || isset($_POST['_newDeliveryDate']) || isset($_POST['_newItemName']) || isset($_POST['_newItemColor']) || isset($_POST['_newItemSize']) || isset($_POST['_newItemFrom']) || isset($_POST['_newDeliveryLocation']) || isset($_POST['_newStatus']) || isset($_POST['_newQuantity']) || isset($_POST['_newOrderNote']) || isset($_FILES['_newDeliveryNoteFile']) || isset($_POST['_newSalesConsultant']) || isset($_FILES['_newOrderImage']) || isset($_POST['_newCat_Id'])){
-		$invoice = $_POST['_newInvoiceId'];
-		$deliveryDate = $_POST['_newDeliveryDate'];
-		$itemname = $_POST['_newItemName'];
-		$color = $_POST['_newItemColor'];
-		$size = $_POST['_newItemSize'];
-		$from = $_POST['_newItemFrom'];
-		$deliverylocation = $_POST['_newDeliveryLocation'];
-		$status = $_POST['_newStatus'];
-		$quantity = $_POST['_newQuantity'];
-		$ordernote = $_POST['_newOrderNote'];
-		$salesconsultant = $_POST['_newSalesConsultant'];
-		$cat_id = $_POST['_newCat_Id'];
+	if (isset($_POST['_zohoInvoice']) || isset($_POST['_zDeliveryDate']) || isset($_POST['_zItemName']) || isset($_POST['_zItemColor']) || isset($_POST['_zItemSize']) || isset($_POST['_zItemFrom']) || isset($_POST['_zItemTo']) || isset($_POST['_zOrderStatus']) || isset($_POST['_zQuantity']) || isset($_POST['_zOrderNote']) || isset($_FILES['_zDeliveryNoteFile']) || isset($_POST['_zSalesConsultant']) || isset($_FILES['_zOrderImage']) || isset($_POST['_zCategory'])){
+		$invoice = $_POST['_zohoInvoice'];
+		$deliveryDate = $_POST['_zDeliveryDate'];
+		$itemname = $_POST['_zItemName'];
+		$color = $_POST['_zItemColor'];
+		$size = $_POST['_zItemSize'];
+		$from = $_POST['_zItemFrom'];
+		$deliverylocation = $_POST['_zItemTo'];
+		$status = $_POST['_zOrderStatus'];
+		$quantity = $_POST['_zQuantity'];
+		$ordernote = $_POST['_zOrderNote'];
+		$salesconsultant = $_POST['_zSalesConsultant'];
+		$cat_id = $_POST['_zCategory'];
 
 		//GET CURRENT DATE AND USER
 		$insertDate=curdate();
@@ -76,12 +76,12 @@
 		// $uploadStatus = 1;
 		$imageName = '';
 		$image = '';
-		foreach($_FILES['_newOrderImage']['tmp_name'] as $key => $_newOrderImage) 
+		foreach($_FILES['_zOrderImage']['tmp_name'] as $key => $_newOrderImage) 
 		{
-			if(!empty($_FILES['_newOrderImage']['tmp_name'][$key]))
+			if(!empty($_FILES['_zOrderImage']['tmp_name'][$key]))
 			{
-				$imageTmpName = $_FILES['_newOrderImage']['tmp_name'][$key];
-				$name = $_FILES['_newOrderImage']['name'][$key];
+				$imageTmpName = $_FILES['_zOrderImage']['tmp_name'][$key];
+				$name = $_FILES['_zOrderImage']['name'][$key];
 
 				//Image name prefexified with a random number
 				$random = rand(000,999);
@@ -102,9 +102,9 @@
 
 		//PDF UPLOAD
 		$_pdfDN = '';
-		if(!empty($_FILES['_newDeliveryNoteFile']['name'])){
-			$dnTMP = $_FILES['_newDeliveryNoteFile']['tmp_name'];
-			$_pdfDN = $_FILES['_newDeliveryNoteFile']['name'];
+		if(!empty($_FILES['_zDeliveryNoteFile']['name'])){
+			$dnTMP = $_FILES['_zDeliveryNoteFile']['tmp_name'];
+			$_pdfDN = $_FILES['_zDeliveryNoteFile']['name'];
 			$result = move_uploaded_file($dnTMP,$pdf_upload_dir.$_pdfDN);
 		}
 		else{
@@ -112,7 +112,7 @@
 		}
 		
 		if(!empty ($imageName)){
-			$insert = $conn->query("INSERT INTO product(
+			$statement = "INSERT INTO product(
 				insertDate,
 				branchId,
 				city,
@@ -147,13 +147,17 @@
 			'".$cat_id."',
 			'".$deliveryDate."',
 			'".$dateAvailability."',
-			'".$userid."')");
+			'".$userid."')";
+			$result = mysqli_query($conn, $statement);
+			if($result){
+				$response['status'] = 1;
+				$response['message'] = 'Form data submitted successfully!';
+				$response['success'] = 'true';
+			}
+		}else{
+			$response['status'] = 0;
 		}
-		if($insert){
-			$response['status'] = 1;
-			$response['message'] = 'Form data submitted successfully!';
-			$response['success'] = 'true';
-		}
+
 	}
 	echo json_encode($response);
 ?>

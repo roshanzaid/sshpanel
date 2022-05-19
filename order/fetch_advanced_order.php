@@ -19,6 +19,10 @@ $branchId = $_POST['branchId'];
 $salesconsultant = $_POST['salesconsultant'];
 $deliverylocation = $_POST['deliverylocation'];
 
+## Date search value
+$searchByFromdate = $_POST['searchByFromdate'];
+$searchByTodate = $_POST['searchByTodate'];
+
 $col =array(
     0   =>  'invoiceId',
     1   =>  'productlink',
@@ -47,9 +51,13 @@ if($salesconsultant != ''){
 if($deliverylocation != ''){
   $filterQuery .= " AND (city='".$deliverylocation."')";
 }
+if($searchByFromdate != '' && $searchByTodate != ''){
+  // $sql .= " and (  '".$row[15]."' between '".$searchByFromdate."' and '".$searchByTodate."' ) ";
+  $filterQuery .= " and (productlink between '".$searchByFromdate."' and '".$searchByTodate."' ) ";
+}
+
 $sql = "SELECT * from product WHERE 1=1 ".$filterQuery;
 $query=mysqli_query($conn,$sql);
-
 
 if(!empty($request['search']['value'])){
     $sql.=" AND (invoiceId Like '".$request['search']['value']."%') ";
@@ -66,7 +74,7 @@ $data=array();
 while($row=mysqli_fetch_array($query)){
     $subdata=array();
     //Days Given and Days Left
-    $productlinkToSec = strtotime($row[1]);
+    $productlinkToSec = strtotime($row[15]);
     $insertDateToSec = strtotime(Date('Y-m-d'));
     $timeDiff = ($productlinkToSec - $insertDateToSec);
     $interval = $timeDiff/86400;
@@ -96,7 +104,7 @@ while($row=mysqli_fetch_array($query)){
       $image = $noImage;
     }
 
-    $comment = $row[16];
+    $comment = $row[17];
     if($comment == null){
       $comment = "N/A";
     }
