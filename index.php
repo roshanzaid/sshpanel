@@ -15,9 +15,11 @@
 	}else if (!empty($_SESSION['_factoryLogin'])){
 		header('Location: base/factory.php');
 		exit;
-	}
-	else if (!empty($_SESSION['_staffLogin'])){
+	}else if (!empty($_SESSION['_staffLogin'])){
 		header('Location: base/staff.php');
+		exit;
+	}else if (!empty($_SESSION['_deliveryLogin'])){
+		header('Location: base/delivery.php');
 		exit;
 	}
 
@@ -48,6 +50,9 @@
 
 		$staff_sql="SELECT * FROM user where username='$username' AND pass='$pass' AND userrole='staff'";
 		$staffQuery=mysqli_query($conn,$staff_sql);
+
+		$delivery_sql="SELECT * FROM user where username='$username' AND pass='$pass' AND userrole='delivery'";
+		$deliveryQuery=mysqli_query($conn,$delivery_sql);
 
 		//SUPERADMIN
 		if(mysqli_num_rows($super_admin_Query)==1){
@@ -181,7 +186,32 @@
 			app_log("'".date('d-m-Y H:i:s')."' : STAFF User '".$username."' Logged In Successfully");			
 			header('Location: base/staff.php');
 			die();
-		}		
+		}
+		//DELIVERY
+		else if(mysqli_num_rows($deliveryQuery)==1){
+			if(!empty($_POST["remember"])){
+				setcookie ("username", $_POST["username"], time() + (10 * 365 * 24 * 60 * 60));
+				setcookie ("pass", $_POST["pass"], time() + (10 * 365 * 24 * 60 * 60));
+			}
+			else{
+				if(isset($_COOKIE["username"])){
+					setcookie ("username", "");
+				}
+				if(isset($_COOKIE["pass"])){
+					setcookie ("pass", "");
+				}
+			}
+			if (!session_id()) session_start();
+			$_SESSION['_deliveryLogin'] = $username;
+			$_SESSION['userName'] = $username;
+			//SESSION MANAGEMENT
+			$_SESSION['expire'] = time();
+			//LOG
+			date_default_timezone_set('Asia/Dubai');
+			app_log("'".date('d-m-Y H:i:s')."' : DELIVERY User '".$username."' Logged In Successfully");			
+			header('Location: base/staff.php');
+			die();
+		}	
 		else {
 			echo "<script>alert('Wrong User Name or Password, Please Try Again')</script>";
 		}

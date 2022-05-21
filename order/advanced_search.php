@@ -126,7 +126,7 @@ function loadSalesPerson(){
 						</div>
 					</div>
 					<div class="row justify-content-center">
-					<div class="col-md-4 col-xl-4 col-xs-4 col-sm-4">
+						<div class="col-md-4 col-xl-4 col-xs-4 col-sm-4">
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
 									<div class="input-group-text">
@@ -146,11 +146,14 @@ function loadSalesPerson(){
 									<input class="form-control fc-datepicker" name="search_todate" id="search_todate" placeholder="Delivery Date" type="text">
 							</div>
 						</div>
-
 					</div>
-					<td>
-         				 <input type='button' id="btn_search" value="Search">
-       				</td>
+					<div class="row row-sm justify-content-center">
+						<div>
+							<div class="input-group mb-3">
+         						<input class="btn btn-teal mr-2 btn-with-icon" type='button' id="btn_search" value="Search">
+							</div>
+						</div>
+					</div>						  
 					<!-- row opened -->
 					<div class="row row-sm">
 						<div class="col-xl-12">
