@@ -42,8 +42,11 @@ function loadDeliveryLocation(){
 
 function loadSalesPerson(){
     global $conn;
-    $salesPersonOutput='';   
-    $salesPersonSqlQuery = "SELECT firstname FROM user WHERE userrole = 'sales'";
+    $salesPersonOutput='';
+	$salesPersonSqlQuery = "SELECT firstname FROM user
+							WHERE sales_col = 1
+							AND active_status = 1
+							ORDER BY firstname ASC";
     $result = mysqli_query($conn, $salesPersonSqlQuery);
     while($row = mysqli_fetch_array($result)){
         $salesPersonOutput .= '<option value = "'.$row["firstname"].'">'.$row["firstname"].'</option>';
@@ -100,7 +103,7 @@ function loadSalesPerson(){
 						</div>
 					</div>
 					<div class="row justify-content-center">
-					<div class="col-md-4 col-xl-4 col-xs-4 col-sm-4">
+						<div class="col-md-4 col-xl-4 col-xs-4 col-sm-4">
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
 									<div class="input-group-text">

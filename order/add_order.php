@@ -4,7 +4,7 @@
 	$pdf_upload_dir = '../pdfUploads/';
 	
 	//DEFAULT RESPONSES
-	$response['status'] = 0;
+	$response['status'] = 2;
 	$response['message'] = 'NOT DONE!';
 	$response['success'] = 'false';
 
@@ -50,7 +50,7 @@
 	// if (isset($_POST['_newInvoiceId']) || isset($_POST['_newDeliveryDate']) || isset($_POST['_newItemName']) || isset($_POST['_newItemColor']) || isset($_POST['_newItemSize']) || isset($_POST['_newItemFrom']) || isset($_POST['_newDeliveryLocation']) || isset($_POST['_newStatus']) || isset($_POST['_newQuantity']) || isset($_POST['_newOrderNote']) || isset($_FILES['_newDeliveryNoteFile']) || isset($_POST['_newSalesConsultant']) || isset($_FILES['_newOrderImage']) || isset($_POST['_newCat_Id'])){
 	if (isset($_POST['_newInvoiceId']) || isset($_POST['_newDeliveryDate']) || isset($_POST['_newItemName']) || isset($_POST['_newItemColor']) || isset($_POST['_newItemSize']) || isset($_POST['_newItemFrom']) || isset($_POST['_newDeliveryLocation']) || isset($_POST['_newStatus']) || isset($_POST['_newQuantity']) || isset($_POST['_newOrderNote']) || isset($_FILES['_newDeliveryNoteFile']) || isset($_POST['_newSalesConsultant']) || isset($_FILES['_newOrderImage']) || isset($_POST['_newCat_Id'])){
 		$invoice = $_POST['_newInvoiceId'];
-		$deliveryDate = $_POST['_newDeliveryDate'];
+		$dd = $_POST['_newDeliveryDate'];
 		$itemname = $_POST['_newItemName'];
 		$color = $_POST['_newItemColor'];
 		$size = $_POST['_newItemSize'];
@@ -61,6 +61,9 @@
 		$ordernote = $_POST['_newOrderNote'];
 		$salesconsultant = $_POST['_newSalesConsultant'];
 		$cat_id = $_POST['_newCat_Id'];
+
+		//DELIVERY DATE CONVERT
+		$deliveryDate = date('Y-m-d',strtotime($dd));
 
 		//GET CURRENT DATE AND USER
 		$insertDate=curdate();
@@ -111,49 +114,59 @@
 			$_pdfDN = 'No Note Attached';
 		}
 		
-		if(!empty ($imageName)){
-			$insert = $conn->query("INSERT INTO product(
-				insertDate,
-				branchId,
-				city,
-				invoiceId,
-				deliveryNote,
-				pname,
-				pimage,
-				size,
-				color,
-				quantity,
-				pstatus,
-				ordernote,
-				salesperson,
-				cat_id,
-				productlink,
-				dateAvailability,
-				createdBy)
-			VALUES 
-			('".$insertDate."',
-			'".$from."',
-			'".$deliverylocation."',
-			'".$invoice."',
-			'".$_pdfDN."',
-			'".$itemname."',
-			'".$imageName."',
-			'".$size."',
-			'".$color."',
-			'".$quantity."',
-			'".$status."',
-			'".$ordernote."',
-			'".$salesconsultant."',
-			'".$cat_id."',
-			'".$deliveryDate."',
-			'".$dateAvailability."',
-			'".$userid."')");
+		try{
+			if(!empty ($imageName)){
+				$insertQuery = "INSERT INTO product(
+					insertDate,
+					branchId,
+					city,
+					invoiceId,
+					deliveryNote,
+					pname,
+					pimage,
+					size,
+					color,
+					quantity,
+					pstatus,
+					ordernote,
+					salesperson,
+					cat_id,
+					productlink,
+					dateAvailability,
+					createdBy)
+				VALUES 
+				('".$insertDate."',
+				'".$from."',
+				'".$deliverylocation."',
+				'".$invoice."',
+				'".$_pdfDN."',
+				'".$itemname."',
+				'".$imageName."',
+				'".$size."',
+				'".$color."',
+				'".$quantity."',
+				'".$status."',
+				'".$ordernote."',
+				'".$salesconsultant."',
+				'".$cat_id."',
+				'".$deliveryDate."',
+				'".$dateAvailability."',
+				'".$userid."')";
+			}
+			$inject = mysqli_query($conn, $insertQuery);
+			if($inject){
+				$response['status'] = 1;
+				$response['message'] = 'Form data submitted successfully!';
+				$response['success'] = 'true';
+			}else{
+				$response['status'] = 2;
+				$response['message'] = 'Query Error';
+				$response['success'] = 'false';
+			}
+		}catch(Exception $error){
+			echo 'RZ|DAUNTE EXCEPTION: ',  $error->getMessage(), "\n";
 		}
-		if($insert){
-			$response['status'] = 1;
-			$response['message'] = 'Form data submitted successfully!';
-			$response['success'] = 'true';
-		}
+
 	}
 	echo json_encode($response);
 ?>
