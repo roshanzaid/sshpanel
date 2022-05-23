@@ -1,12 +1,27 @@
 <?php
 	include "../base/db.php";
+
+	if(isset($_POST) && !empty($_POST)) {
+	include('../library/phpqrcode/qrlib.php'); 
+	$codesDir = "../qrcodes/";	
+	$codeFile = $_POST['_newInvoiceId'].'.png';
+	$formData = 'https://localhost/base/delivery.php?search='.$_POST['_newInvoiceId'];
+	// generating QR code
+	QRcode::png($formData, $codesDir.$codeFile); 
+	// display generated QR code
+	// echo '<img class="img-thumbnail" src="'.$codesDir.$codeFile.'" />';
+	} else {
+		header('location:./');
+	}
+
 	$image_upload_dir = '../uploads/';
 	$pdf_upload_dir = '../pdfUploads/';
-	
+
 	//DEFAULT RESPONSES
-	$response['status'] = 2;
+	$response['status'] = 0;
 	$response['message'] = 'NOT DONE!';
 	$response['success'] = 'false';
+
 
 	//SESSION MANAGEMENT
 	if (!session_id()) session_start();
@@ -116,7 +131,7 @@
 		
 		try{
 			if(!empty ($imageName)){
-				$insertQuery = "INSERT INTO product(
+				$insert = $conn->query("INSERT INTO product(
 					insertDate,
 					branchId,
 					city,
@@ -133,7 +148,8 @@
 					cat_id,
 					productlink,
 					dateAvailability,
-					createdBy)
+					createdBy,
+					qrcode)
 				VALUES 
 				('".$insertDate."',
 				'".$from."',
@@ -151,17 +167,13 @@
 				'".$cat_id."',
 				'".$deliveryDate."',
 				'".$dateAvailability."',
-				'".$userid."')";
-			}
-			$inject = mysqli_query($conn, $insertQuery);
-			if($inject){
-				$response['status'] = 1;
-				$response['message'] = 'Form data submitted successfully!';
-				$response['success'] = 'true';
-			}else{
-				$response['status'] = 2;
-				$response['message'] = 'Query Error';
-				$response['success'] = 'false';
+				'".$userid."',
+				'".$codeFile."')");
+				if($insert){
+					$response['status'] = 1;
+					$response['message'] = 'Form data submitted successfully!';
+					$response['success'] = 'true';
+				}
 			}
 		}catch(Exception $error){
 			echo 'RZ|DAUNTE EXCEPTION: ',  $error->getMessage(), "\n";
