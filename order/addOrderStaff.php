@@ -1,5 +1,5 @@
 <?php
-include "../../base/db.php";
+include "../base/db.php";
 
 function loadStaff(){
     global $conn;
@@ -8,7 +8,7 @@ function loadStaff(){
     $result = mysqli_query($conn, $staffSqlQuery);
     $staffOutput .= '<option value = "Select Staff ID">Select Staff ID</option>';
     while($row = mysqli_fetch_array($result)){
-        $staffOutput .= '<option value = "'.$row["id"].'">'.$row["staff_name"].'</option>';
+        $staffOutput .= '<option value = "'.$row['id'].'">'.$row["staff_name"].'</option>';
     }
     return $staffOutput;
 }
@@ -34,13 +34,13 @@ function loadStaff(){
                     <div>
                         <div class="input-group mb-3">
                             <select name="invoice" id="invoice"  class="form-control select2-show-search select2-dropdown">
-                                <input hidden id="id" name="id" class="form-control"type="text">
                             </select>
+                            <input hidden id="id" name="id" class="form-control"type="text">
                         </div>
                     </div>
                     <div>
                         <div class="input-group mb-3">
-                            <select name="staff_name" id="staff_name" class="SlectBox form-control">
+                            <select name="staff_name" id="staff_name"  class="form-control select2-show-search select2-dropdown">
                                 <?php echo loadStaff(); ?>
                             </select>
                         </div>
@@ -56,6 +56,23 @@ function loadStaff(){
         </form>
     </div>
 </div>
+
+
+
+<!-- Sweet-alert js  -->
+<script src="../assets/plugins/sweet-alert/sweetalert.min.js"></script>
+<script src="../assets/js/sweet-alert.js"></script>
+<!-- Internal Modal js-->
+<script src="../assets/js/modal.js"></script>
+<!-- Internal Sumoselect js -->
+<script src="../assets/plugins/sumoselect/jquery.sumoselect.js"></script>
+<!-- Internal Select2 js -->
+<!-- <script src="../assets/js/select2.js"></script> -->
+<script src="../assets/plugins/select2/js/select2.min.js"></script>
+
+<!-- Internal Form-elements js -->
+<script src="../assets/js/advanced-form-elements.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function(){
     $("#orderstatus").change(function(e){
@@ -79,20 +96,21 @@ $(document).ready(function(){
             $.ajax({
                 type: "POST",
                 url: '../order/add_staff_order.php',
+                dataType: 'json',
                 data: {order_id:order_id, staff_id:staff_id},
                 success: function(response){
                     if(response.index == 1){
-                        console.log('its exists 1');
                         _staffExists();
                     }else if(response.index == 2){
-                        console.log('its saved 2');
                         errorHandling();
+                        $('#formNewOrderStaff').trigger("reset");
+                        _staffAdded();
                     }else{
-                        errorHandling();
+                        _staffExists();
                     }
                 }
             });
-        }
+        }            
     });
 
     //ERROR HANDLING
@@ -119,9 +137,10 @@ $(document).ready(function(){
             _warningMessage = "Staff Name is Left Empty";
             _staffWarning(_warningMessage, _warningText);
             flag = false
-        }else{
-            _staffAdded();
         }
+        // else{
+        //     _staffAdded();
+        // }
         return flag;
     }
 
@@ -145,7 +164,7 @@ $(document).ready(function(){
         });
     }
 
-    //SUCCESS ALERT
+    //WARNING ALERT
     function _staffExists(){
         swal({
             title: 'Staff Exists',
@@ -157,19 +176,4 @@ $(document).ready(function(){
 });
 </script>
 
-<!-- Internal Sumoselect js -->
-<script src="../assets/plugins/sumoselect/jquery.sumoselect.js"></script>
 
-<!-- Internal Select2 js -->
-<!-- <script src="../assets/js/select2.js"></script> -->
-<script src="../assets/plugins/select2/js/select2.min.js"></script>
-
-<!-- Internal Form-elements js -->
-<script src="../assets/js/advanced-form-elements.js"></script>
-
-<!-- Sweet-alert js  -->
-<script src="../assets/plugins/sweet-alert/sweetalert.min.js"></script>
-<script src="../assets/js/sweet-alert.js"></script>
-
-<!-- Internal Modal js-->
-<script src="../assets/js/modal.js"></script>

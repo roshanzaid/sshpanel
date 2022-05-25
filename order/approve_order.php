@@ -29,7 +29,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table text-md-nowrap" id="pendingTable">
+                                        <table id="pendingTable" class="testclass table key-buttons text-md-nowrap">
                                             <thead>
                                                 <tr>
                                                     <th class="border-bottom-0">IID</th>
@@ -73,7 +73,7 @@
 
         <script>
             $(document).ready(function() {
-                var tableone = $('#pendingTable').DataTable( {
+				var tableone = $('#pendingTable').DataTable( {
                     "processing": 	true,
                     "serverSide": 	true,
                     "paging"	:	true,
@@ -129,10 +129,12 @@
                     $.ajax({
                         url     : 'statusChange.php',
                         method  : 'POST',
+                        dataType: 'json',
                         data    : {confirmOrder : confirmOrder},
-                        success : function(data){
-                            $('#pendingTable').DataTable().ajax.reload();
-                            alert("SUCCESS");
+                        success : function(response){
+                            if(response.index == 1){
+                                $('#pendingTable').DataTable().ajax.reload();
+                            }
                         }
                     });
                 }
