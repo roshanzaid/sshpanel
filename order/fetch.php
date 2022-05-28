@@ -100,9 +100,9 @@
 
         //FETCH ITEM
         $oneRow = "$row[6]<br><strong> Size - $row[8]</strong>";
-        $deliveryNotePrint = "<a href=../base/deliveryNoteDownload.php?file_id=$row[0]>$row[4]";
+        $deliveryNotePrintqr = "<a href=../base/deliveryNoteDownload.php?file_id=$row[0]>$row[4]</a><br><a href='../qrcodes/$row[22]' target='_blank'><img src='../qrcodes/$row[22]' /></a> ";
         $qrcodeinvoicefordelivery = "$row[4]";
-        $deliveryNotePrint = "<a href=../base/deliveryNoteDownload.php?file_id=$row[0]>$row[4] ";
+        $deliveryNotePrint = "<a href=../base/deliveryNoteDownload.php?file_id=$row[0]>$row[4]";
 
 
         //MATERIAL AVAILABILITY
@@ -138,8 +138,7 @@
                 $subdata[]=$row[11];
                 $subdata[]= '<a type="button" title="Print" href="../print/customizePrint.php?action=select&id='.$row[0].'" target="_blank" class="btn btn-primary btn-xs"><i class="typcn typcn-document-text"></i></a>';
             }else{
-                $subdata[]='<div class="inner"><button id="statusChangePrev" title="Previous" class="btn btn-primary btn-icon" data-id="'.$row[0].'"><i class="typcn typcn-arrow-left"></i></button></div>
-                            <button id="statusChangeNext" title="Next" class="btn btn-primary btn-icon" data-id="'.$row[0].'"><i class="typcn typcn-arrow-right"></i></button></div>';
+                $subdata[]='<div class="inner"><button id="statusChangeNext" title="Next" class="btn btn-primary btn-icon" data-id="'.$row[0].'"><i class="typcn typcn-arrow-right"></i></button></div>';
             }
             $subdata[]=$row[20];
         }
@@ -208,7 +207,7 @@
 
         //FACTORY
         else if($userrole == "factory"){
-            $subdata[]=$deliveryNotePrint;
+            $subdata[]=$deliveryNotePrintqr; 
             $subdata[]=$row[15];
             $subdata[]=$dateAvailability;
             $subdata[]=$row[3];

@@ -50,7 +50,7 @@ function loadSalesPerson(){
 								<button id="orderEdit" class="modal-effect btn btn-teal mr-2 btn-with-icon" data-effect="effect-scale" data-toggle="modal" data-target="#editOrderModal" type="button"><i class="typcn typcn-document-edit"></i>Edit Order</button>
 							</div>
 							<div class="pr-1 mb-3 mb-xl-0">
-								<button id="addStaff" class="modal-effect btn btn-teal mr-2 btn-with-icon" data-effect="effect-scale" data-toggle="modal" data-target="#orderStaffModal" type="button"><i class="typcn typcn-document-edit"></i>Staff Made</button>
+								<button id="changeStatus" class="modal-effect btn btn-teal mr-2 btn-with-icon" data-effect="effect-scale" data-toggle="modal" data-target="#statusChangeModal" type="button"><i class="typcn typcn-document-edit"></i>Status Change</button>
 							</div>
 						</div>
 					</div>
@@ -320,6 +320,12 @@ function loadSalesPerson(){
 					</div>
 				</div>
 				<!--MODAL CLOSED-->
+				<!--COMMENT MODAL-->
+				<div class="modal effect-scale show" id="statusChangeModal">
+					<div class="modal-dialog" role="document">
+						<div id="status-change-content-data"></div>
+					</div>
+				</div>
 			</div>
 			<!-- main-content closed -->
 			<?php include "../footer/footer.php"; ?>
@@ -328,10 +334,6 @@ function loadSalesPerson(){
 
 		<!-- Back-to-top -->
 		<a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
-
-		<!-- Back-to-top -->
-		<a href="#top" id="back-to-top"><i class="ti-angle-double-up"></i></a>
-
 		<!-- JQuery min js -->
 		<script src="../assets/plugins/jquery/jquery.min.js"></script>
 		<!--Internal  Datepicker js -->
@@ -908,7 +910,8 @@ function loadSalesPerson(){
 									_markMaterialAvailable();
 								}else if (response.index == 3){
 									_staffEntry();
-								}else{
+								}
+								else{
 									console.log('AUL AUL AUL');
 								}
 							}
@@ -953,6 +956,39 @@ function loadSalesPerson(){
 					else{
 						return false;
 					}
+				});
+
+				//MATERIAL
+				$(document).on('click','#_materialLpo',function(event){
+					event.preventDefault();
+					var id=$(this).data('id');
+					$('#material-content-data').html('');
+					$.ajax({
+						type:'POST',
+						url:'../order/materialLpoModal.php',
+						data:'id='+id,
+						dataType:'html'
+					}).done(function(data){
+						$('#material-content-data').html('');
+						$('#material-content-data').html(data);
+					}).fail(function(){
+						$('#material-content-data').html('<p>Error</p>');
+					});
+				});
+
+				//CHANGE STATUS
+				$(document).on('click','#changeStatus',function(event){
+					event.preventDefault();
+					$('#status-change-content-data').html('');
+					$.ajax({
+						type:'POST',
+						url:'../order/modal/statusModal.php'
+					}).done(function(data){
+						$('#status-change-content-data').html('');
+						$('#status-change-content-data').html(data);
+					}).fail(function(){
+						$('#status-change-content-data').html('<p>Error</p>');
+					});
 				});
 
 				//WARNING ALERT
@@ -1010,100 +1046,7 @@ function loadSalesPerson(){
 						});
 					});
 				}
-			
-
-				// //OLD MATERIAL
-				// $(document).on('click','#materialConfirm',function(event){
-				// 	if(confirm("Are you sure Confirming Material Availability?")){
-				// 		event.preventDefault();
-				// 		var materialid = $(this).attr('data-id');
-				// 		$.ajax({
-				// 			url     : '../order/statusChange.php',
-				// 			method  : 'POST',
-				// 			data    : {materialid : materialid},
-				// 			success : function(data){
-				// 				$('#exampleone').DataTable().ajax.reload();
-				// 			}
-				// 		});
-				// 	}
-				// 	else{
-				// 		return false;
-				// 	}
-				// });
-
-				//MATERIAL
-				$(document).on('click','#_materialLpo',function(event){
-					event.preventDefault();
-					var id=$(this).data('id');
-					$('#material-content-data').html('');
-					$.ajax({
-						type:'POST',
-						url:'../order/materialLpoModal.php',
-						data:'id='+id,
-						dataType:'html'
-					}).done(function(data){
-						$('#material-content-data').html('');
-						$('#material-content-data').html(data);
-					}).fail(function(){
-						$('#material-content-data').html('<p>Error</p>');
-					});
-				});
 			} );
-
-			
 		</script>
-		<!-- custom js -->
-		<!-- <script src="../assets/js/custom.js"></script> -->
-		<!-- JQuery min js -->
-		<!-- <script src="../assets/plugins/jquery/jquery.min.js"></script> -->
-		<!-- Bootstrap Bundle js -->
-		<!-- <script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-		<!-- Sweet-alert js  -->
-		<!-- <script src="../assets/plugins/sweet-alert/sweetalert.min.js"></script> -->
-		<!-- <script src="../assets/js/sweet-alert.js"></script> -->
-		<!--Internal  Datepicker js -->
-		<!-- <script src="../assets/plugins/jquery-ui/ui/widgets/datepicker.js"></script> -->
-		<!--Internal  jquery-simple-datetimepicker js -->
-		<!-- <script src="../assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js"></script> -->
-		<!-- Ionicons js -->
-		<!-- <script src="../assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script> -->
-		<!--Internal  Parsley.min js -->
-		<!-- <script src="../assets/plugins/parsleyjs/parsley.min.js"></script> -->
-		<!-- Internal Data tables -->
-		<!-- <script src="../assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-		<script src="../assets/plugins/datatable/js/dataTables.dataTables.min.js"></script>
-		<script src="../assets/plugins/datatable/js/dataTables.responsive.min.js"></script>
-		<script src="../assets/plugins/datatable/js/responsive.dataTables.min.js"></script>
-		<script src="../assets/plugins/datatable/js/jquery.dataTables.js"></script>
-		<script src="../assets/plugins/datatable/js/dataTables.bootstrap4.js"></script>
-		<script src="../assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
-		<script src="../assets/plugins/datatable/js/buttons.bootstrap4.min.js"></script>
-		<script src="../assets/plugins/datatable/js/jszip.min.js"></script>
-		<script src="../assets/plugins/datatable/js/pdfmake.min.js"></script>
-		<script src="../assets/plugins/datatable/js/vfs_fonts.js"></script>
-		<script src="../assets/plugins/datatable/js/buttons.html5.min.js"></script>
-		<script src="../assets/plugins/datatable/js/buttons.print.min.js"></script>
-		<script src="../assets/plugins/datatable/js/buttons.colVis.min.js"></script>
-		<script src="../assets/plugins/datatable/js/dataTables.responsive.min.js"></script>
-		<script src="../assets/plugins/datatable/js/responsive.bootstrap4.min.js"></script> -->
-		<!--Internal  Datatable js -->
-		<!-- <script src="../assets/js/table-data.js"></script> -->
-		<!-- Horizontalmenu js-->
-		<!-- <script src="../assets/plugins/horizontal-menu/horizontal-menu-2/horizontal-menu.js"></script> -->
-		<!-- Sticky js -->
-		<!-- <script src="../assets/js/sticky.js"></script> -->
-		<!-- Internal Select2 js-->
-		<!-- <script src="../assets/plugins/select2/js/select2.min.js"></script> -->
-		<!-- eva-icons js -->
-		<!-- <script src="../assets/js/eva-icons.min.js"></script> -->
-       	<!-- Internal Sumoselect js -->
-	   	<!-- <script src="../assets/plugins/sumoselect/jquery.sumoselect.js"></script> -->
-		<!-- Internal form-elements js -->
-		<!-- <script src="../assets/js/form-elements.js"></script>
-		<script src="../assets/plugins/rating/jquery.rating-stars.js"></script> -->
-		<!-- Internal Form-validation js -->
-		<!-- <script src="../assets/js/form-validation.js"></script> -->
-		<!-- Internal Modal js-->
-		<!-- <script src="../assets/js/modal.js"></script> -->
 	</body>
 </html>

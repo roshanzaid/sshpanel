@@ -30,7 +30,7 @@
         // if (isset($_POST['_newInvoiceId']) || isset($_FILES['_newDeliveryNoteFile'])){
         $_eid = $_POST['_eid'];
         $_editInvoiceId = $_POST['_editInvoiceId'];
-        $_editDeliveryDate = $_POST['_editDeliveryDate'];
+        $_edd = $_POST['_editDeliveryDate'];
         $_editItemName = $_POST['_editItemName'];
         $_editItemColor = $_POST['_editItemColor'];
         $_editItemSize = $_POST['_editItemSize'];
@@ -41,6 +41,9 @@
         $_editOrderNote = $_POST['_editOrderNote'];
         $_editSalesConsultant = $_POST['_editSalesConsultant'];
         $_editCat_Id = $_POST['_editCat_Id'];
+
+		//DELIVERY DATE CONVERT
+		$deliveryDate = date('Y-m-d',strtotime($_edd));
 
         // //GET CURRENT DATE AND USER
         // $insertDate=curdate();
@@ -78,7 +81,6 @@
             }
             else{
                 $_imageName = '';
-                //echo 'tada';
             }
         }
 
@@ -114,7 +116,7 @@
                     pimage = '$_imageName'
                     WHERE id = '$_eid'";
 
-                    $response['status'] = 2;
+                    $response['status'] = 1;
             }
             else if((empty($_imageName)) && (!empty($_dnName)))
             {
@@ -134,7 +136,7 @@
                     deliveryNote = '$_dnName'
                     WHERE id = '$_eid'";
 
-                    $response['status'] = 3;
+                    $response['status'] = 1;
             }
             else if((!empty($_imageName)) && (!empty($_dnName)))
             {
@@ -155,7 +157,7 @@
                     deliveryNote = '$_dnName'
                     WHERE id = '$_eid'";
 
-                    $response['status'] = 4;
+                    $response['status'] = 1;
             }
             else
             {
@@ -174,7 +176,7 @@
                     ordernote = '$_editOrderNote'
                     WHERE id = '$_eid'";
 
-                    $response['status'] = 5;
+                    $response['status'] = 1;
             }
             $result = mysqli_query($conn, $statement);
             if($result){
