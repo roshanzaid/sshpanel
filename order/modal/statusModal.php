@@ -151,6 +151,9 @@
                             successAdded();
                             $('#filterStatus')[0].sumo.selectItem(0);
                         }
+                        else if(response.index == 2){
+                            _markMaterial();
+                        }
                         else if(response.index == 3){
                             _markStaff();
                         }
@@ -224,6 +227,16 @@
             swal({
                 title: 'Add Staff Before',
                 text: 'Any In Production order should be added staff before proceeding',
+                type: "warning",
+                confirmButtonClass: "btn btn-danger"
+            });
+        }
+
+        //ADD MATERIAL
+        function _markMaterial(){
+            swal({
+                title: "Mark Material",
+                text: "Please confirm material availability before changing status",
                 type: "warning",
                 confirmButtonClass: "btn btn-danger"
             });
