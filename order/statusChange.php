@@ -45,8 +45,13 @@ include "../base/db.php";
     
             $statusChangeQuery = "";
             $statusChangeMessage = "";
-    
-            if($orderStatus == "New Order"){
+
+            if($orderStatus == "CRM"){
+                $statusChangeQuery = "update product set pstatus = 'New Order', material = 'No' where id=".$statusid;
+                $statusChangeMessage = "Order status has been changed to New Order";
+                $response['index'] = 1;
+            }
+            else if($orderStatus == "New Order"){
                 if($materialStatus !== 'Yes'){
                     $statusChangeQuery = "update product set pstatus = 'New Order' where id=".$statusid;
                     $statusChangeMessage = "Please Confirm Material Availability";

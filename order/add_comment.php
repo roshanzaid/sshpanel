@@ -10,6 +10,9 @@
 	 * PUSHED FROM AND GOES TO ADDNEWCOMMENT.PHP AND STATUSMODAL.PHP
 	 * 
 	 */
+
+	$response['index'] = 0;
+
 	if(isset($_POST['selectedstat'])){
 		$_output='';
 		$sql = "SELECT * FROM product WHERE pstatus='".$_POST['selectedstat']."' ORDER BY invoiceId";
@@ -40,25 +43,9 @@
 		$all = $newcomment.' - '.$currentDate;
 		$sql = "UPDATE product SET userComment = CONCAT(IFNULL(userComment,''),'$all') WHERE id = '$id'";
 		$result = mysqli_query($conn,$sql);
-		$commentAdded = "Comment has been added succesfully";
 		if($result){
-			echo "<script type='text/javascript'>alert('$commentAdded')</script>";
+			$response['index'] = 1;
 		}
 	}
-
-	// if(isset($_POST['newcomment']))
-	// {
-	//   $id=$_POST['id'];
-	//   $userid=$_SESSION['login'];
-	//   $userComment = $_POST['userComment'];
-	//   $currentDate = curdate();
-	//   $all = $userComment.'-'.$currentDate;
-	//   $sql = "UPDATE `product` SET `userComment` = '$all' WHERE `id` = '$id'";
-	//   $run = $conn->query($sql) or die("Error in Entry".$conn->error);
-	//   if ($run) {
-	// 	date_default_timezone_set('Asia/Dubai');
-	// 	app_log("'".date('d-m-Y H:i:s')."' Order ID : '".$id."' has been commented as '".$userComment."' by '".$userid."'");
-	// 		  header('Location: admin.php');
-	// 	  }
-	//}
+	json_encode ($response);
 ?>
