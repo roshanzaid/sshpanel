@@ -149,7 +149,6 @@
                         if(response.index == 1){
                             errorHandling();
                             successAdded();
-                            $('#filterStatus')[0].sumo.selectItem(0);
                         }
                         else if(response.index == 2){
                             _markMaterial();

@@ -128,7 +128,11 @@ include "../base/db.php";
                     $mat_select = $conn->query("SELECT * FROM product WHERE id=".$id);
                     $row = mysqli_fetch_array($mat_select);
                     $matAvail = $row['material'];
-                    if($matAvail !== 'Yes'){
+                    if($matAvail == 'Yes'){
+                        $commentUpdate = $conn->query("UPDATE product SET userComment = CONCAT(IFNULL(userComment,''),'$all'), pstatus = '$newStatus' WHERE id = '$id'");
+                        $response['index'] = 1;
+                    }
+                    else{
                         $response['index'] = 2;
                     }
                 }
