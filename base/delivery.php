@@ -1,22 +1,42 @@
 <?php
-    session_start();
+
+    /*********************************************************************************
+	* PROJECT: ZETA 1.0.0
+	* AUTHOR: NOMAN
+	* FILE FOR: DELIVERY ROLE USER INTERFACE AND TABLES OF ALL STATUSES
+	* 
+	* VARIABLES
+	* @PARAM	{STRING}	HOST								//DB HOST
+	* @PARAM	{STRING}	USERNAME							//HOST USERNAME
+	* @PARAM	{STRING}	PASSWORD							//HOST PASSWORD
+	* @PARAM	{STRING}	DBNAME								//DATABASE NAME
+	*
+	/********************************************************************************/
+    
+    //INCLUDE DIRECTORIES
     include "../base/db.php";
     include '../base/deliveryNoteDownload.php';
-    if(!isset($_SESSION['_deliveryLogin'])){header('Location:../index.php');}
+
+    //KEEP TRACK ON SESSION VARIABLES
+    if(!session_id()) session_start();
+	if(!isset($_SESSION['_deliveryLogin'])){
+		date_default_timezone_set('Asia/Dubai'); 
+		app_log("'".date('d-m-Y H:i:s')."' : Session is not set, Login Attempt DELIVERY User");
+		header('Location:../index.php');
+	}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<?php include "../header/header_css.php"; ?>
+    <head>
+		<?php include "../header/header_css.php"; ?>
+	</head>
     <body class="main-body">
-        <!-- Page -->
         <div class="page">
-            <!-- main-content opened -->
             <?php include "../header/header.php";?>
                 <div class="main-content horizontal-content">
-                <!-- container opened -->
                     <div class="container">
-                    <!-- breadcrumb -->
                         <div class="breadcrumb-header justify-content-between">
                             <div class="my-auto">
                                 <div class="d-flex">
@@ -74,23 +94,14 @@
                             </div>
                         </div>
                     </div>
-                    <!--Image Modal-->
+                    <!--IMAGE MODAL-->
                     <div class="modal effect-scale show" id="imagemodalone">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div id="content-data"></div>
                         </div>
                     </div>
-
-                    <!--New Order Modal-->
-                    <div class="modal effect-scale show" id="newOrderModal">
-                        <div class="modal-dialog-new-order" role="document">
-                            <div id="add-order-content-data"></div>
-                        </div>
-                    </div>
                 </div>
-                <!-- Container closed -->
             </div>
-            <!-- main-content closed -->
             <?php include "../footer/footer.php"; ?>
         </div>
         <!-- End Page -->
@@ -150,27 +161,27 @@
             }
                            
             window.onload = function (e) {
-            var query = getQueryParams(document.location.search);
-            // if (query.search  != null) {
-            //         var table = $('#deliverytable').dataTable({ "retrieve": true }).api();
-            //         table.search(query.search).draw();
-            // }
+                var query = getQueryParams(document.location.search);
             };
 
             $(document).ready(function() {
+
+				//DATATABLE IMPLEMENTATION
+
+				//INITIATING TABLE OUT FOR DELIVERY
+				//IDISPLAYLENGTH - TABLE WILL DISPLAY 100 RECORDS, HAS BEEN PAGINATED
+				//SENT TO FILE	- FETCH.PHP WITH STATUS: OUT FOR DELIVERY TO FETCH ALL NEW ORDER RECORDS
+				//SENT TO FILE	- FETCH.PHP WITH NEXT STATUS: DELIVERED TO CHANGE THE STATUSES WITH BUTTONS ON ACTION COLUMN
+				//DRAWCALLBACK	- TABLE ROWS WILL BE CATEGORIZED WITH DELIVERY DATES
+				//ROWCALLBACK	- TABLE ROWS WILL BE HIGHLIGHTED IF THE ORDER RECORD IS EDITED/FROM SHARAG DG/NOON
                 var query = getQueryParams( document.location.search );
                 if ( query ) {
                     if ( query.search ) {
-                        // $( "#deliverytable" ).val( query.search );
                         var table = $('#deliverytable').val( query.search ).DataTable( {
                             "processing":   true,
                             "serverSide":   true,
                             "paging"    :   true,
                             "retrieve"  :   true,
-                            // "searching" : true,
-                            // "sDom": 'Brtip',
-                            // "buttons": [
-                            // ],
                             "iDisplayLength" : 100,
                             "ajax": {
                                 url  :"../order/fetch.php",
