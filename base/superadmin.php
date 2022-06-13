@@ -962,21 +962,6 @@
 					});
 				});
 
-				//ORDER MADE STAFF
-				$(document).on('click','#addStaff',function(event){
-					event.preventDefault();
-					$('#add-order-staff-content-data').html('');
-					$.ajax({
-						type:'POST',
-						url:'../order/addOrderStaff.php'
-					}).done(function(data){
-						$('#add-order-staff-content-data').html('');
-						$('#add-order-staff-content-data').html(data);
-					}).fail(function(){
-						$('#add-order-staff-content-data').html('<p>Error</p>');
-					});
-				});
-
 				//CHANGE STATUS - NEXT
 				$(document).on('click','#statusChangeNext',function(event){
 					if(confirm("Are you sure changing status?")){
@@ -1009,7 +994,27 @@
 								}else if (response.index == 2){
 									_markMaterialAvailable();
 								}else if (response.index == 3){
-									_staffEntry();
+									swal({
+										title: "Add Staff",
+										text: "Please add staff before marking next",
+										type: "warning",
+										confirmButtonClass: "btn btn-danger",
+										allowOutsideClick: true
+									},
+									function(){
+										$('#orderStaffModal').modal('show');
+										$('#add-order-staff-content-data').html('');
+										$.ajax({
+											type:'POST',
+											data:'id='+statusid,
+											url:'../order/addOrderStaff.php'
+										}).done(function(data){
+											$('#add-order-staff-content-data').html('');
+											$('#add-order-staff-content-data').html(data);
+										}).fail(function(){
+											$('#add-order-staff-content-data').html('<p>Error</p>');
+										});
+									});
 								}
 								else{
 									console.log('AUL AUL AUL');
@@ -1123,29 +1128,46 @@
 					});
 				}
 
-				//WARNING ALERT
-				function _staffEntry(){
-					swal({
-						title: "Add Staff",
-						text: "Please add staff before marking next",
-						type: "warning",
-						confirmButtonClass: "btn btn-danger",
-						allowOutsideClick: true
-					},
-					function(){
-						$('#orderStaffModal').modal('show');
-						$('#add-order-staff-content-data').html('');
-						$.ajax({
-							type:'POST',
-							url:'../order/addOrderStaff.php'
-						}).done(function(data){
-							$('#add-order-staff-content-data').html('');
-							$('#add-order-staff-content-data').html(data);
-						}).fail(function(){
-							$('#add-order-staff-content-data').html('<p>Error</p>');
-						});
-					});
-				}
+				// //ORDER MADE STAFF
+				// $(document).on('click','#addStaff',function(event){
+				// 	event.preventDefault();
+				// 	$('#add-order-staff-content-data').html('');
+				// 	$.ajax({
+				// 		type:'POST',
+				// 		url:'../order/addOrderStaff.php'
+				// 	}).done(function(data){
+				// 		$('#add-order-staff-content-data').html('');
+				// 		$('#add-order-staff-content-data').html(data);
+				// 	}).fail(function(){
+				// 		$('#add-order-staff-content-data').html('<p>Error</p>');
+				// 	});
+				// });
+
+				// //WARNING ALERT
+				// function _staffEntry(){
+				// 	swal({
+				// 		title: "Add Staff",
+				// 		text: "Please add staff before marking next",
+				// 		type: "warning",
+				// 		confirmButtonClass: "btn btn-danger",
+				// 		allowOutsideClick: true
+				// 	},
+				// 	function(){
+				// 		$('#orderStaffModal').modal('show');
+				// 		$('#add-order-staff-content-data').html('');
+				// 		var id=$(this).data('id');
+				// 		$.ajax({
+				// 			type:'POST',
+				// 			data:'id='+id,
+				// 			url:'../order/addOrderStaff.php'
+				// 		}).done(function(data){
+				// 			$('#add-order-staff-content-data').html('');
+				// 			$('#add-order-staff-content-data').html(data);
+				// 		}).fail(function(){
+				// 			$('#add-order-staff-content-data').html('<p>Error</p>');
+				// 		});
+				// 	});
+				// }
 
 				$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
                 	localStorage.setItem('activeTab', $(e.target).attr('href'));

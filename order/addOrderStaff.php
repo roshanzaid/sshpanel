@@ -13,50 +13,59 @@ function loadStaff(){
     return $staffOutput;
 }
 
+if(isset($_REQUEST['id'])){
+    $id=intval($_REQUEST['id']);
+    $sql="select * from product WHERE id=$id";
+    $run_sql=mysqli_query($conn,$sql);
+    var_dump($id);
+    while($row=mysqli_fetch_array($run_sql)){
+        $id=$row['id'];
+        $itemDet = $row['invoiceId'].' - '.$row['pname'];
+    }
 ?>
-<div class="modal-content modal-content-demo">
-    <div class="modal-header">
-        <h5 class="modal-title">Add Who Made</h5>
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    </div>              
-    <div class="modal-body">
-        <form id="formNewOrderStaff" method="post" autocomplete="off" enctype="multipart/form-data">
-            <div class="row row-sm">
-                <div class="col-lg-12">
-                    <div>
-                        <div class="input-group mb-3">
-                            <select name="staffStatus" id="staffStatus" class="SlectBox form-control">
-                                <option value="Select Order Status">Select Order Status</option>
-                                <option value="In Production">In Production</option>
-                            </select>
+    <div class="modal-content modal-content-demo">
+        <div class="modal-header">
+            <h5 class="modal-title">Add Who Made</h5>
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>              
+        <div class="modal-body">
+            <form id="formNewOrderStaff" method="post" autocomplete="off" enctype="multipart/form-data">
+                <div class="row row-sm">
+                    <div class="col-lg-12">
+                        <div>
+                            <div class="input-group mb-3">
+                                <select disabled name="staffStatus" id="staffStatus" class="SlectBox form-control">
+                                    <option value="In Production">In Production</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="input-group mb-3">
-                            <select name="staffInvoice" id="staffInvoice"  class="form-control select2-show-search select2-dropdown">
-                            </select>
-                            <input hidden id="id" name="id" class="form-control"type="text">
+                        <div>
+                            <div class="input-group mb-3">
+                                <input hidden id="orderId" name="orderId" value="<?php echo $id;?>" class="form-control"type="text">
+                                <input disabled id="staffInvoice" name="staffInvoice" value="<?php echo $itemDet;?>" class="form-control"type="text">
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="input-group mb-3">
-                            <select name="staff_name" id="staff_name"  class="form-control select2-show-search select2-dropdown">
-                                <?php echo loadStaff(); ?>
-                            </select>
+                        <div>
+                            <div class="input-group mb-3">
+                                <select name="staff_name" id="staff_name"  class="form-control select2-show-search select2-dropdown">
+                                    <?php echo loadStaff(); ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group mb-0 mt-3 justify-content-end">
-                <div>
-                    <button type="submit" id="submit" name="submit" class="btn btn-primary btn-size">Add</button>
+                <div class="form-group mb-0 mt-3 justify-content-end">
+                    <div>
+                        <button type="submit" id="submit" name="submit" class="btn btn-primary btn-size">Add</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
-
+<?php
+}
+?>
 
 <!-- JQuery min js -->
 <!-- <script src="../assets/plugins/jquery/jquery.min.js"></script>        -->
@@ -74,23 +83,11 @@ function loadStaff(){
 <script src="../assets/js/modal.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    $("#staffStatus").change(function(e){
-        e.preventDefault();
-        var orderStatus = $(this).val();
-        $.ajax({
-            url:'../order/add_staff_order.php',
-            method: 'POST',
-            data: {orderStatus:orderStatus},
-            success:function(data){
-                $("#staffInvoice").html(data);
-            }
-        });
-    });
 
     $('#formNewOrderStaff').on('submit', function(e){
         e.preventDefault();
         if(errorHandling()){
-            var order_id = $('#staffInvoice').val();
+            var order_id = $('#orderId').val();
             var staff_id = $('#staff_name').val();
             $.ajax({
                 type: "POST",
@@ -160,6 +157,9 @@ $(document).ready(function(){
             text: 'Succesfully Added to The Order',
             type: 'success',
             confirmButtonColor: '#57a94f'
+        },
+        function load(){
+            location.reload();
         });
     }
 
