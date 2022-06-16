@@ -967,6 +967,7 @@
 					if(confirm("Are you sure changing status?")){
 						event.preventDefault();
 						var statusid = $(this).attr('data-id');
+						var prodStat;
 						$.ajax({
 							url     : '../order/statusChange.php',
 							method  : 'POST',
@@ -995,7 +996,7 @@
 									_markMaterialAvailable();
 								}else if (response.index == 3){
 									swal({
-										title: "Add Staff",
+										title: "Add Production Staff",
 										text: "Please add staff before marking next",
 										type: "warning",
 										confirmButtonClass: "btn btn-danger",
@@ -1004,9 +1005,33 @@
 									function(){
 										$('#orderStaffModal').modal('show');
 										$('#add-order-staff-content-data').html('');
+										prodStat = 'In Production';
 										$.ajax({
 											type:'POST',
-											data:'id='+statusid,
+											data:{ id:statusid , prodStat:prodStat},
+											url:'../order/addOrderStaff.php'
+										}).done(function(data){
+											$('#add-order-staff-content-data').html('');
+											$('#add-order-staff-content-data').html(data);
+										}).fail(function(){
+											$('#add-order-staff-content-data').html('<p>Error</p>');
+										});
+									});
+								}else if (response.index == 4){
+									swal({
+										title: "Add Delivery Staff",
+										text: "Please add staff before marking next",
+										type: "warning",
+										confirmButtonClass: "btn btn-danger",
+										allowOutsideClick: true
+									},
+									function(){
+										$('#orderStaffModal').modal('show');
+										$('#add-order-staff-content-data').html('');
+										prodStat = 'Ready';
+										$.ajax({
+											type:'POST',
+											data:{ id:statusid , prodStat:prodStat},
 											url:'../order/addOrderStaff.php'
 										}).done(function(data){
 											$('#add-order-staff-content-data').html('');
