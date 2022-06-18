@@ -112,9 +112,9 @@
 																	<th class="border-bottom-0">Color</th>
 																	<th class="border-bottom-0">QTY</th>
 																	<th class="border-bottom-0">Note</th>
-																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Image</th>
 																	<th class="border-bottom-0">Comment</th>
+																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Action</th>
 																</tr>
 															</thead>
@@ -135,9 +135,9 @@
 																	<th class="border-bottom-0">Color</th>
 																	<th class="border-bottom-0">QTY</th>
 																	<th class="border-bottom-0">Note</th>
-																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Image</th>
 																	<th class="border-bottom-0">Comment</th>
+																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Action</th>
 																</tr>
 															</thead>
@@ -158,9 +158,9 @@
 																	<th class="border-bottom-0">Color</th>
 																	<th class="border-bottom-0">QTY</th>
 																	<th class="border-bottom-0">Note</th>
-																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Image</th>
 																	<th class="border-bottom-0">Comment</th>
+																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Action</th>
 																</tr>
 															</thead>
@@ -181,9 +181,9 @@
 																	<th class="border-bottom-0">Color</th>
 																	<th class="border-bottom-0">QTY</th>
 																	<th class="border-bottom-0">Note</th>
-																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Image</th>
 																	<th class="border-bottom-0">Comment</th>
+																	<th class="border-bottom-0">Mady By</th>
 																	<th class="border-bottom-0">Action</th>
 																</tr>
 															</thead>
@@ -204,9 +204,9 @@
 																	<th class="border-bottom-0">Color</th>
 																	<th class="border-bottom-0">QTY</th>
 																	<th class="border-bottom-0">Note</th>
-																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Image</th>
 																	<th class="border-bottom-0">Comment</th>
+																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Action</th>
 																</tr>
 															</thead>
@@ -227,9 +227,9 @@
 																	<th class="border-bottom-0">Color</th>
 																	<th class="border-bottom-0">QTY</th>
 																	<th class="border-bottom-0">Note</th>
-																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Image</th>
 																	<th class="border-bottom-0">Comment</th>
+																	<th class="border-bottom-0">Consult</th>
 																</tr>
 															</thead>
 														</table>
@@ -249,9 +249,9 @@
 																	<th class="border-bottom-0">Color</th>
 																	<th class="border-bottom-0">QTY</th>
 																	<th class="border-bottom-0">Note</th>
-																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Image</th>
 																	<th class="border-bottom-0">Comment</th>
+																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Action</th>
 																</tr>
 															</thead>
@@ -272,9 +272,9 @@
 																	<th class="border-bottom-0">Color</th>
 																	<th class="border-bottom-0">QTY</th>
 																	<th class="border-bottom-0">Note</th>
-																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Image</th>
 																	<th class="border-bottom-0">Comment</th>
+																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Action</th>
 																</tr>
 															</thead>
@@ -295,10 +295,10 @@
 																	<th class="border-bottom-0">Color</th>
 																	<th class="border-bottom-0">QTY</th>
 																	<th class="border-bottom-0">Note</th>
-																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Image</th>
 																	<th class="border-bottom-0">Comment</th>
 																	<th class="border-bottom-0">Status</th>
+																	<th class="border-bottom-0">Consult</th>
 																	<th class="border-bottom-0">Action</th>
 																</tr>
 															</thead>
@@ -476,7 +476,7 @@
 					},
 					"autoWidth": false,
 					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11,12 ] } ],
-					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" }]
+					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "6%" },{ "sWidth": "2%" }]
 				} );
 
 				//IN PRODUCTION
@@ -523,7 +523,7 @@
 					},
 					"autoWidth": false,
 					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11,12 ] } ],
-					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" }]
+					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "6%" },{ "sWidth": "2%" }]
 				} );
 
 				//READY
@@ -570,7 +570,7 @@
 					},
 					"autoWidth": false,
 					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11,12 ] } ],
-					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" }]
+					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "6%" },{ "sWidth": "2%" }]
 				} );
 
 				//OUT FOR DELIVERY
@@ -617,7 +617,7 @@
 					},
 					"autoWidth": false,
 					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11,12 ] } ],
-					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" }]
+					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "6%" },{ "sWidth": "2%" }]
 				} );
 
 				//DELIVERED
@@ -664,7 +664,7 @@
 					},
 					"autoWidth": false,
 					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11 ] } ],
-					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" },{ "sWidth": "3%" },{ "sWidth": "15%" }]
+					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "3%" }]
 				} );
 
 				//ON HOLD
@@ -711,7 +711,7 @@
 					},
 					"autoWidth": false,
 					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11,12 ] } ],
-					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" }]
+					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "6%" },{ "sWidth": "2%" }]
 				} );
 
 				//CANCELLED
@@ -758,7 +758,7 @@
 					},
 					"autoWidth": false,
 					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11,12 ] } ],
-					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" }]
+					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "6%" },{ "sWidth": "2%" }]
 				} );
 
 				//ALL PRODUCTS
@@ -806,19 +806,20 @@
 					"autoWidth": false,
 					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11,12,13 ] } ],
 					"aoColumns": [
-						{ "sWidth": "5%" }, 
+						{ "sWidth": "3%" }, 
 						{ "sWidth": "5%" },
 						{ "sWidth": "2%" }, 
 						{ "sWidth": "3%" },
 						{ "sWidth": "2%" },
 						{ "sWidth": "20%" },
 						{ "sWidth": "12%" },
+						{ "sWidth": "2%" },
+						{ "sWidth": "20%" },
 						{ "sWidth": "3%" },
-						{ "sWidth": "15%" },
-						{ "sWidth": "5%" },
-						{ "sWidth": "3%" },
-						{ "sWidth": "15%" },
-						{ "sWidth": "5%" }
+						{ "sWidth": "20%" },
+						{ "sWidth": "4%" },
+						{ "sWidth": "2%" },
+						{ "sWidth": "2%" }
 					]
 				} );
 
