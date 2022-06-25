@@ -12,6 +12,7 @@ function loadBranch(){
     $branchOutput='';   
     $branchSqlQuery = "SELECT * FROM branch ORDER BY branch_name";
     $result = mysqli_query($conn, $branchSqlQuery);
+	$branchOutput .= '<option value="">Choose Branch</option>';
     while($row = mysqli_fetch_array($result)){
         $branchOutput .= '<option value = "'.$row["branch_name"].'">'.$row["branch_name"].'</option>';
     }
@@ -23,6 +24,7 @@ function loadOrderStatus(){
     $statusOutput='';   
     $statusSqlQuery = "SELECT * FROM order_status";
     $result = mysqli_query($conn, $statusSqlQuery);
+	$statusOutput .= '<option value="">Choose Status</option>';
     while($row = mysqli_fetch_array($result)){
         $statusOutput .= '<option value = "'.$row["status_name"].'">'.$row["status_name"].'</option>';
     }
@@ -34,6 +36,7 @@ function loadDeliveryLocation(){
     $cityOutput='';   
     $citySqlQuery = "SELECT * FROM delivery_city";
     $result = mysqli_query($conn, $citySqlQuery);
+	$cityOutput .= '<option value="">Choose Delivery City</option>';
     while($row = mysqli_fetch_array($result)){
         $cityOutput .= '<option value = "'.$row["city_name"].'">'.$row["city_name"].'</option>';
     }
@@ -48,6 +51,7 @@ function loadSalesPerson(){
 							AND active_status = 1
 							ORDER BY firstname ASC";
     $result = mysqli_query($conn, $salesPersonSqlQuery);
+	$salesPersonOutput .= '<option value="">Choose Sales Consultant</option>';
     while($row = mysqli_fetch_array($result)){
         $salesPersonOutput .= '<option value = "'.$row["firstname"].'">'.$row["firstname"].'</option>';
     }
@@ -188,9 +192,7 @@ function loadSalesPerson(){
 						</div>
 					</div>
 				</div>
-				<!-- Container closed -->
 			</div>
-			<!-- main-content closed -->
 
 			<!-- Image Modal -->
 			<div class="modal effect-scale show" id="imagemodalone">
@@ -218,7 +220,7 @@ function loadSalesPerson(){
 					"processing": 	true,
 					"serverSide": 	true,
 					"paging"	:	true,
-					"searching"	:	true,
+					"searching"	:	false,
 					"dom": 'Bfrtip',
 					"buttons": [
 						'copy', 'csv', 'pdf', 'print'
@@ -249,12 +251,10 @@ function loadSalesPerson(){
 						}
 					},
 					"rowCallback": function( row, data, index ) {
-						if ( data[7] == "Sharaf DG" )
-						{
+						if ( data[7] == "Sharaf DG" ){
 							$('td', row).css('background-color', '#b5b5de');
 						}
-						else if ( data[7] != "Sharaf DG" )
-						{
+						else if ( data[7] != "Sharaf DG" ){
 							$('td', row).css('background-color', 'white');
 						}
 					},

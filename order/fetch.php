@@ -227,7 +227,10 @@
             else if($status == "Out for Delivery"){
                 $subdata[]=$row[28];
             }
-            $subdata[]=$row[11];
+            else if($status == ''){
+                $subdata[]=$row[11];
+            }
+            $subdata[]=$row[20];
         }
 
         //FACTORY
