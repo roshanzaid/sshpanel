@@ -415,13 +415,14 @@
 						}
 					},
 					"rowCallback": function( row, data, index ) {
-						if ( data[7] == "Sharaf DG" )
-						{
-							$('td', row).css('background-color', '#b5b5de');
+						if ( data[9] == "Sharaf DG" ){
+							$('td', row).css('background-color', '#fcf9c7');
 						}
-						else if ( data[7] != "Sharaf DG" )
-						{
-							$('td', row).css('background-color', 'white');
+						else if ( data[9] == "NooN" ){
+							$('td', row).css('background-color', '#fcf9c7');
+						}
+						if(data[13] != null){
+							$('td', row).css('background-color', '#cbcbf5');
 						}
 					},
 					"drawCallback": function ( settings ) {
@@ -480,16 +481,6 @@
 							nextStatus : 'Ready'
 						}
 					},
-					"rowCallback": function( row, data, index ) {
-						if ( data[7] == "Sharaf DG" )
-						{
-							$('td', row).css('background-color', '#b5b5de');
-						}
-						else if ( data[7] != "Sharaf DG" )
-						{
-							$('td', row).css('background-color', 'white');
-						}
-					},
 					"drawCallback": function ( settings ) {
 						var api = this.api();
 						var rows = api.rows( {page:'current'} ).nodes();
@@ -544,16 +535,6 @@
 						data : {
 							status : 'Ready',
 							nextStatus : 'Out for Delivery'
-						}
-					},
-					"rowCallback": function( row, data, index ) {
-						if ( data[7] == "Sharaf DG" )
-						{
-							$('td', row).css('background-color', '#b5b5de');
-						}
-						else if ( data[7] != "Sharaf DG" )
-						{
-							$('td', row).css('background-color', 'white');
 						}
 					},
 					"drawCallback": function ( settings ) {
@@ -613,16 +594,6 @@
 							nextStatus : 'Delivered'
 						}
 					},
-					"rowCallback": function( row, data, index ) {
-						if ( data[7] == "Sharaf DG" )
-						{
-							$('td', row).css('background-color', '#b5b5de');
-						}
-						else if ( data[7] != "Sharaf DG" )
-						{
-							$('td', row).css('background-color', 'white');
-						}
-					},
 					"drawCallback": function ( settings ) {
 						var api = this.api();
 						var rows = api.rows( {page:'current'} ).nodes();
@@ -677,16 +648,6 @@
 							nextStatus : ''
 						}
 					},
-					"rowCallback": function( row, data, index ) {
-						if ( data[7] == "Sharaf DG" )
-						{
-							$('td', row).css('background-color', '#b5b5de');
-						}
-						else if ( data[7] != "Sharaf DG" )
-						{
-							$('td', row).css('background-color', 'white');
-						}
-					},
 					"drawCallback": function ( settings ) {
 						var api = this.api();
 						var rows = api.rows( {page:'current'} ).nodes();
@@ -726,16 +687,6 @@
 						data : {
 							status : 'On Hold',
 							nextStatus : 'New Order'
-						}
-					},
-					"rowCallback": function( row, data, index ) {
-						if ( data[7] == "Sharaf DG" )
-						{
-							$('td', row).css('background-color', '#b5b5de');
-						}
-						else if ( data[7] != "Sharaf DG" )
-						{
-							$('td', row).css('background-color', 'white');
 						}
 					},
 					"drawCallback": function ( settings ) {
@@ -790,16 +741,6 @@
 						data : {
 							status : 'Cancelled',
 							nextStatus : 'New Order'
-						}
-					},
-					"rowCallback": function( row, data, index ) {
-						if ( data[7] == "Sharaf DG" )
-						{
-							$('td', row).css('background-color', '#b5b5de');
-						}
-						else if ( data[7] != "Sharaf DG" )
-						{
-							$('td', row).css('background-color', 'white');
 						}
 					},
 					"drawCallback": function ( settings ) {
@@ -857,13 +798,14 @@
 						}
 					},
 					"rowCallback": function( row, data, index ) {
-						if ( data[7] == "Sharaf DG" )
-						{
-							$('td', row).css('background-color', '#b5b5de');
+						if ( data[9] == "Sharaf DG" ){
+							$('td', row).css('background-color', '#fcf9c7');
 						}
-						else if ( data[7] != "Sharaf DG" )
-						{
-							$('td', row).css('background-color', 'white');
+						else if ( data[9] == "NooN" ){
+							$('td', row).css('background-color', '#fcf9c7');
+						}
+						if(data[14] != null){
+							$('td', row).css('background-color', '#cbcbf5');
 						}
 					},
 					"drawCallback": function ( settings ) {
@@ -920,16 +862,6 @@
 						data : {
 							status : 'CRM',
 							nextStatus : ''
-						}
-					},
-					"rowCallback": function( row, data, index ) {
-						if ( data[7] == "Sharaf DG" )
-						{
-							$('td', row).css('background-color', '#b5b5de');
-						}
-						else if ( data[7] != "Sharaf DG" )
-						{
-							$('td', row).css('background-color', 'white');
 						}
 					},
 					"drawCallback": function ( settings ) {
