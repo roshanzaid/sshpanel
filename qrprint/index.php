@@ -37,13 +37,6 @@
 								<h4 class="content-title mb-0 my-auto">Due Orders</h4><span class="text-muted mt-1 tx-13 ml-2 mb-0">/ View / Export Due</span>
 							</div>
 						</div>
-						<div class="d-flex my-xl-auto right-content">
-							<div class="mb-3 mb-xl-0">
-								<div class="btn-group dropdown">
-									<button id="qrprint" class="modal-effect btn btn-primary" data-effect="effect-scale" data-toggle="modal" data-target="#qrprintmodal" type="button">QR Print</button>
-								</div>
-							</div>
-						</div>
 					</div>
 					<div class="row row-sm">
 					    <div class="col-xl-12">
