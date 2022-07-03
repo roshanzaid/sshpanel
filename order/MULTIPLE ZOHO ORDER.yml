@@ -1,83 +1,84 @@
-{invoice_id: "2163791000004277061", invoice_number: "INV-007172", date: "2022-03-22",…}
-  ach_payment_initiated: false
-  ach_supported: false
-  adjustment: 0
-  adjustment_description: "Adjustment"
-  allow_partial_payments: false
-  approver_id: ""
-  approvers_list: []
-  attachment_name: ""
-  balance: 0
-  bcy_adjustment: 0
-  bcy_discount_total: 0
-  bcy_shipping_charge: 0
-  bcy_sub_total: 1666.67
-  bcy_tax_total: 83.33
-  bcy_total: 1750
-billing_address: {street: "Dubai↵0545485468", address: "Dubai↵0545485468", street2: "", city: "", state: "", zip: "",…}
-  address: "Dubai\n0545485468"
-  attention: ""
-  city: ""
-  country: "United Arab Emirates"
-  fax: ""
-  phone: ""
-  state: ""
-  street: "Dubai\n0545485468"
-  street2: ""
-  zip: ""
+ach_payment_initiated: false
+ach_supported: false
+adjustment: 0
+adjustment_description: "Adjustment"
+allow_partial_payments: false
+approver_id: ""
+approvers_list: []
+attachment_name: ""
+balance: 3700
+bcy_adjustment: 0
+bcy_discount_total: 0
+bcy_shipping_charge: 0
+bcy_sub_total: 3523.81
+bcy_tax_total: 176.19
+bcy_total: 3700
+billing_address: {street: "708↵Al Amree Building", address: "708↵Al Amree Building", street2: "", city: "Al Mankool",…}
+    address: "708\nAl Amree Building"
+    attention: ""
+    city: "Al Mankool"
+    country: "United Arab Emirates"
+    fax: ""
+    phone: "00971522443328"
+    state: "Dubai"
+    street: "708\nAl Amree Building"
+    street2: ""
+    zip: "00000"
 can_send_in_mail: false
 can_send_invoice_sms: true
 chatlet_count: 0
 client_viewed_time: ""
 color_code: ""
 contact_category: "vat_not_registered"
-contact_persons: []
-contact_persons_details: [{contact_person_id: "2163791000003975691", first_name: "", last_name: "", email: "", phone: "",…}]
-  0: {contact_person_id: "2163791000003975691", first_name: "", last_name: "", email: "", phone: "",…}
-      contact_person_id: "2163791000003975691"
-      email: ""
-      first_name: ""
-      is_primary_contact: true
-      last_name: ""
-      mobile: "056 878 8338"
-      phone: ""
-      photo_url: "https://secure.gravatar.com/avatar/00000000000000000000000000000000?&d=mm"
-created_by_id: "2163791000000832002"
-created_date: "2022-03-22"
-created_time: "2022-03-22T15:04:56+0400"
+contact_persons: ["2163791000005086003"]
+    0: "2163791000005086003"
+contact_persons_details: [{contact_person_id: "2163791000005086003", first_name: "Roshan", last_name: "Test",…}]
+    0: {contact_person_id: "2163791000005086003", first_name: "Roshan", last_name: "Test",…}
+    contact_person_id: "2163791000005086003"
+    email: "zaid@asgharfurniture.ae"
+    first_name: "Roshan"
+    is_primary_contact: true
+    last_name: "Test"
+    mobile: "+971522443328"
+    phone: "0522443328"
+    photo_url: "https://secure.gravatar.com/avatar/759e37c101fd30d385e2c0a77d552c70?&d=mm"
+created_by_id: "2163791000000492099"
+created_date: "2022-06-30"
+created_time: "2022-06-30T16:27:28+0400"
 credits_applied: 0
 currency_code: "AED"
 currency_id: "2163791000000069093"
+currency_name_formatted: "AED- UAE Dirham"
 currency_symbol: "AED"
-current_sub_status: "paid"
+current_sub_status: "draft"
 current_sub_status_id: ""
 custom_field_hash: []
 custom_fields: []
 customer_custom_field_hash: []
 customer_custom_fields: []
-customer_default_billing_address: {zip: "", country: "United Arab Emirates", address: "Dubai↵0545485468", city: "", phone: "",…}
-  address: "Dubai\n0545485468"
-  city: ""
-  country: "United Arab Emirates"
-  fax: ""
-  phone: ""
-  state: ""
-  state_code: ""
-  street2: ""
-  zip: ""
-customer_id: "2163791000003975689"
-customer_name: "READYROOM"
-date: "2022-03-22"
+customer_default_billing_address: {zip: "00000", country: "United Arab Emirates", address: "708↵Al Amree Building", city: "Al Mankool",…}
+    address: "708\nAl Amree Building"
+    city: "Al Mankool"
+    country: "United Arab Emirates"
+    fax: ""
+    phone: "00971522443328"
+    state: "Dubai"
+    state_code: "DU"
+    street2: ""
+    zip: "00000"
+customer_id: "2163791000005086001"
+customer_name: "Mr. Roshan Test"
+date: "2022-06-30"
 discount: 0
 discount_applied_on_amount: 0
 discount_percent: 0
 discount_total: 0
 discount_type: "item_level"
 documents: []
-due_date: "2022-03-22"
+due_date: "2022-06-30"
 ecomm_operator_id: ""
 ecomm_operator_name: ""
-email: ""
+email: "zaid@asgharfurniture.ae"
 estimate_id: ""
 exchange_rate: 1
 filed_in_vat_return_id: ""
@@ -86,9 +87,9 @@ filed_in_vat_return_type: ""
 gcc_vat_treatment: "vat_not_registered"
 includes_package_tracking_info: false
 inprocess_transaction_present: false
-invoice_id: "2163791000004277061"
-invoice_number: "INV-007172"
-invoice_url: "https://zohosecurepay.com/books/asgharfurniturellc/secure?CInvoiceID=2-dbc4f8814544c09bc0801c0a516375d0255e00c02513a92bb2730e6b16777c8840dd6aaf7503f9baced70623730ace6f32a46c8ef1b83a2cb7432c3311010a4c11e80a707f5b3196 "
+invoice_id: "2163791000005086027"
+invoice_number: "INV-008911"
+invoice_url: "https://zohosecurepay.com/books/asgharfurniturellc/secure?CInvoiceID=2-dbc4f8814544c09b67355e4d6e0000c939024635563b775c7037d88837243c2043621eed3d9b5faaced70623730ace6ffa0dfabb4d3723fb7f10156a40b3afa811e80a707f5b3196 "
 is_autobill_enabled: false
 is_backorder: ""
 is_client_review_settings_enabled: false
@@ -98,18 +99,18 @@ is_inclusive_tax: true
 is_reverse_charge_applied: false
 is_taxable: true
 is_viewed_by_client: false
-last_modified_by_id: "2163791000000832002"
-last_modified_time: "2022-03-22T15:05:45+0400"
-last_payment_date: "2022-03-22"
+last_modified_by_id: "2163791000000492099"
+last_modified_time: "2022-06-30T16:27:28+0400"
+last_payment_date: ""
 last_reminder_sent_date: ""
 line_items: [,…]
-  0: {line_item_id: "2163791000004277063", item_id: "", item_order: 0, product_type: "service", name: "",…}
+    0: {line_item_id: "2163791000005086029", item_id: "", item_order: 0, product_type: "service", name: "",…}
     account_id: "2163791000000000388"
     account_name: "Sales"
-    bcy_rate: 1750
+    bcy_rate: 1500
     bill_id: ""
     bill_item_id: ""
-    description: "Sapphire L-Shaped Sofa Set with 3 Cushions\nOverall Size: 230cm (W) x 150cm (D) x 70cm (H)\nColor: CAT 1044 - 27"
+    description: "Tv Cabinet\nSize: Good Size\nColor: Good Color"
     discount: 0
     discount_amount: 0
     discounts: []
@@ -122,16 +123,16 @@ line_items: [,…]
     item_custom_fields: []
     item_id: ""
     item_order: 0
-    item_total: 1666.67
+    item_total: 1428.57
     item_type: ""
-    line_item_id: "2163791000004277063"
+    line_item_id: "2163791000005086029"
     name: ""
     pricebook_id: ""
     product_type: "service"
     project_id: ""
     purchase_rate: ""
     quantity: 1
-    rate: 1750
+    rate: 1500
     salesorder_item_id: ""
     tags: []
     tax_id: "2163791000000076029"
@@ -142,13 +143,13 @@ line_items: [,…]
     time_entry_ids: []
     unit: ""
     zoho_recruit_jobopening_id: ""
-  1: {line_item_id: "2163791000004277065", item_id: "", item_order: 1, product_type: "service", name: "",…}
+    1: {line_item_id: "2163791000005086031", item_id: "", item_order: 1, product_type: "service", name: "",…}
     account_id: "2163791000000000388"
     account_name: "Sales"
-    bcy_rate: 0
+    bcy_rate: 2200
     bill_id: ""
     bill_item_id: ""
-    description: "Delivery and Handling "
+    description: "Sofa\nSize: Good Sofa Size\nColor: Good Sofa Color"
     discount: 0
     discount_amount: 0
     discounts: []
@@ -161,16 +162,16 @@ line_items: [,…]
     item_custom_fields: []
     item_id: ""
     item_order: 1
-    item_total: 0
+    item_total: 2095.24
     item_type: ""
-    line_item_id: "2163791000004277065"
+    line_item_id: "2163791000005086031"
     name: ""
     pricebook_id: ""
     product_type: "service"
     project_id: ""
     purchase_rate: ""
     quantity: 1
-    rate: 0
+    rate: 2200
     salesorder_item_id: ""
     tags: []
     tax_id: "2163791000000076029"
@@ -184,16 +185,17 @@ line_items: [,…]
 merchant_id: ""
 merchant_name: ""
 next_reminder_date_formatted: ""
-notes: ""
+no_of_copies: 1
+notes: "Should be perfect"
 offline_created_date_with_time: ""
 orientation: "portrait"
 page_height: "11.69in"
 page_width: "8.27in"
 payment_discount: 0
 payment_expected_date: ""
-payment_made: 1750
+payment_made: 0
 payment_options: {payment_gateways: []}
-  payment_gateways: []
+    payment_gateways: []
 payment_reminder_enabled: true
 payment_terms: 0
 payment_terms_label: "Due on Receipt"
@@ -207,26 +209,27 @@ roundoff_value: 0
 sales_channel: "direct_sales"
 salesorder_id: ""
 salesorder_number: ""
-salesperson_id: "2163791000000958001"
-salesperson_name: "April"
+salesperson_id: "2163791000000105015"
+salesperson_name: "AF Sales"
 schedule_time: ""
-shipping_address: {street: "Boulevard Central Tower 1 Unit 403", address: "Boulevard Central Tower 1 Unit 403",…}
-  address: "Boulevard Central Tower 1 Unit 403"
-  attention: ""
-  city: ""
-  country: "United Arab Emirates"
-  fax: ""
-  phone: ""
-  state: ""
-  street: "Boulevard Central Tower 1 Unit 403"
-  street2: ""
-  zip: ""
+shipping_address: {street: "", address: "", street2: "", city: "", state: "", zip: "", country: "", fax: "", phone: "",…}
+    address: ""
+    attention: ""
+    city: ""
+    country: ""
+    fax: ""
+    phone: ""
+    state: ""
+    street: ""
+    street2: ""
+    zip: ""
 shipping_bills: []
 shipping_charge: 0
-status: "paid"
+show_no_of_copies: true
+status: "draft"
 stop_reminder_until_payment_expected_date: false
 sub_statuses: []
-sub_total: 1666.67
+sub_total: 3523.81
 sub_total_inclusive_of_tax: 0
 subject_content: ""
 submitted_by: ""
@@ -235,17 +238,17 @@ submitter_id: ""
 tax_amount_withheld: 0
 tax_reg_no: ""
 tax_rounding: "item_level"
-tax_total: 83.33
+tax_total: 176.19
 tax_treatment: "vat_not_registered"
-taxes: [{tax_name: "Standard Rate (5%)", tax_amount: 83.33}]
-  0: {tax_name: "Standard Rate (5%)", tax_amount: 83.33}
-    tax_amount: 83.33
-    tax_name: "Standard Rate (5%)"
+taxes: [{tax_name: "Standard Rate (5%)", tax_amount: 176.19}]
+    0: {tax_name: "Standard Rate (5%)", tax_amount: 176.19}
+        tax_amount: 176.19
+        tax_name: "Standard Rate (5%)"
 template_id: "2163791000000017001"
 template_name: "Standard Template"
 template_type: "standard"
 terms: ""
-total: 1750
+total: 3700
 transaction_rounding_type: "nearest_whole_number_rounding"
 type: "invoice"
 unused_retainer_payments: 0

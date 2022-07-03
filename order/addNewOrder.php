@@ -20,6 +20,21 @@
 	// //KEEP TRACK ON SESSION VARIABLES
     // if(!session_id()) session_start();
 
+	// if(isset($_POST['_sp'])){
+	// 	$branchOutput='';
+	// 	$sp = $_POST['_sp'];
+	// 	$sqlQuery = $conn->query("SELECT * FROM user WHERE firstname='".$sp."'");
+	// 	while ($row = mysqli_fetch_array($sqlQuery)){
+	// 		$branch_from = $row['branch_from'];
+	// 	}
+    //     if($branch_from == 'af_dubai'){
+    //         $branchOutput .= '<option value = "Asghar Furniture - Dubai">Asghar Furniture - Dubai</option>';
+    //     }else if($branch_from == 'af_ajman'){
+    //         $branchOutput .= '<option value = "Asghar Furniture - Ajman">Asghar Furniture - Ajman</option>';	
+    //     }
+	// 	echo $branchOutput;
+	// }
+
     function loadBranch(){
         global $conn;
         $branchOutput='';
@@ -70,7 +85,6 @@
         }
         return $CatOutput;
     }
-
 ?>
 <div class="modal-content modal-content-demo">
     <div class="modal-header">
@@ -120,6 +134,7 @@
                         <div class="col-lg-6">
                             <div class="input-group mb-3">
                                 <select value='Order From' name="_newItemFrom" id="_newItemFrom" class="SlectBox form-control">
+                                    <!-- <option value="" disabled selected>Choose From</option> -->
                                     <?php echo loadBranch(); ?>
                                 </select>
                             </div>
@@ -150,7 +165,7 @@
                     <div class="row row-sm">
                         <div class="col-lg-6">
                             <div class="input-group mb-3">
-                                <textarea value="Order Note Text" id="_newOrderNote" name="_newOrderNote" class="form-control" placeholder="Order Note" rows="6"></textarea>
+                                <textarea value="" id="_newOrderNote" name="_newOrderNote" class="form-control" placeholder="Order Note" rows="4"></textarea>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -161,6 +176,17 @@
                                         Select <input type="file" name="_newDeliveryNoteFile" id="_newDeliveryNoteFile" style="display: none;">
                                     </span>
                                 </label>
+                            </div>
+                            <div>
+                                <div class="input-group file-browser">
+                                    <input id="_newSwatchLabel" type="text" class="form-control browse-file" placeholder="Select Swatch Image" readonly>
+                                    <label class="input-group-btn">
+                                        <span class="btn btn-default">
+                                            Select <input class="file-input" type="file" name="_newSwatchImage" id="_newSwatchImage" style="display: none;" multiple>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="swatchPreview"></div>
                             </div>
                         </div>
                     </div>
@@ -177,6 +203,12 @@
                         <select value="Select Category" name="_newCat_Id" id="_newCat_Id" class="SlectBox form-control">
                             <?php echo loadCat(); ?>
                         </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <textarea value="Enter Payment Terms" id="_newPaymentTerms" name="_newPaymentTerms" class="form-control" placeholder="Enter Payment Terms" rows="3"></textarea>
+                    </div>
+                    <div class="input-group mb-3">
+                        <textarea value="Conditions Here" id="_newCondition" name="_newCondition" class="form-control" placeholder="Conditions Here" rows="3"></textarea>
                     </div>
                     <div>
                         <div class="input-group mb-3">
@@ -239,6 +271,20 @@
 
     //FORM SUBMISSION
     $(document).ready(function(){
+        
+        // $("#_newSalesConsultant").change(function(e){
+        //     e.preventDefault();
+        //     var _sp = $(this).val();
+        //     $.ajax({
+        //         url: '../order/addNewOrder.php',
+        //         method: 'POST',
+        //         data: {_sp:_sp},
+        //         success: function (data) {
+        //             $("#_newItemFrom").html(data);
+        //         }
+        //     });
+        // });
+
         $("#formNewOrder").on('submit', function(e){
             e.preventDefault();
             if(errorHandling()){
@@ -275,16 +321,19 @@
             var _invoiceId = $("#_newInvoiceId").val();
             var _deliveryDate = $("#_newDeliveryDate").val();
             var _itemName = $("#_newItemName").val();
-            var _itemColor = $("_newItemColor").val();
+            var _itemColor = $("#_newItemColor").val();
             var _itemSize = $("#_newItemSize").val();
             var _branchFrom = $("#_newItemFrom").val();
             var _deliveryTo = $("#_newDeliveryLocation").val();
             var _orderStatus = $("#_newStatus").val();
             var _itemQuantity = $("#_newQuantity").val();
             var _orderNote = $("#_newOrderNote").val();
+            var _paymentTerms = $("#_newPaymentTerms").val();
+            var _condition = $("#_newCondition").val();
             var _deliveryNote = $("#_newDeliveryNoteFile").val();
             var _salesConsultant = $("#_newSalesConsultant").val();
             var _images = $("#_newOrderImage").val();
+            var _swatchImage = $("#_newSwatchImage").val();
             var _categoryId = $("#_newCat_Id").val();
 
             if(_invoiceId == ''){
@@ -332,8 +381,18 @@
                 emptyFieldAlert(_warningMessage, _warningText);
                 flag = false
             }
-            else if(_orderNote == 'Choose Order Note'){
+            else if(_orderNote == ''){
                 _warningMessage = "Order Note Must be Filled";
+                emptyFieldAlert(_warningMessage, _warningText);
+                flag = false
+            }
+            else if(_paymentTerms == ''){
+                _warningMessage = "Add Order Payment Terms";
+                emptyFieldAlert(_warningMessage, _warningText);
+                flag = false
+            }
+            else if(_condition == ''){
+                _warningMessage = "Mention Order Conditions";
                 emptyFieldAlert(_warningMessage, _warningText);
                 flag = false
             }
@@ -349,6 +408,11 @@
             }
             else if(_images == ''){
                 _warningMessage = "Item Images are Missing";
+                emptyFieldAlert(_warningMessage, _warningText);
+                flag = false
+            }
+            else if(_swatchImage == ''){
+                _warningMessage = "Swatch Image is Missing";
                 emptyFieldAlert(_warningMessage, _warningText);
                 flag = false
             }
@@ -392,6 +456,10 @@
             //MAKE DELIVERY NOTE EMPTY
             var _dnLabel = document.getElementById ("_newDNLabel");
             _dnLabel.placeholder = "Select Delivery Note";
+            //MAKE SWATCH IMAGE EMPTY
+            var _swatchLabel = document.getElementById ("_newSwatchLabel");
+            _swatchLabel.placeholder = "Select Swatch Image";
+            $( 'div.swatchPreview' ).empty();
             //MAKE SELECTORS EMPTY
             $('select.SlectBox')[0].sumo.reload();
             $('select.SlectBox')[1].sumo.reload();
@@ -419,6 +487,10 @@
             $('#_newOrderImage').on('change', function() {
                 imagesPreview(this, 'div.preview');
                 $( 'div.preview' ).empty();
+            });
+            $('#_newSwatchImage').on('change', function() {
+                imagesPreview(this, 'div.swatchPreview');
+                $( 'div.swatchPreview' ).empty();
             });
         });
 
@@ -462,6 +534,25 @@
                 }
             }
         });
-    });
 
+        //SWATCH IMAGE LABEL CHANGE
+        $('#_newSwatchImage').on("change", function(){
+            var input = document.getElementById ("_newSwatchLabel");
+            var swatchCount = $(this)[0].files.length;
+            var _swatchFileSize = this.files[0].size/1024;
+            var _swatchFileSizeLimit = 100;
+            if(_swatchFileSize > _swatchFileSizeLimit){
+                $("#_newSwatchImage").val(null);
+                var _warningSizeTitle = "Check File Size";
+                var _warningSizeText = "Total File Size is Limited to 100 KB";
+                emptyFieldAlert(_warningSizeTitle, _warningSizeText);
+            }else{
+                if(swatchCount > 0){
+                    input.placeholder = swatchCount+" Swatch Image Attached";
+                }else{
+                    input.placeholder = "Select Swatch Image";
+                }
+            }
+        });
+    });
 </script>

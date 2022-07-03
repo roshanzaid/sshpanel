@@ -110,7 +110,7 @@
         $("#filterInvoice").change(function(e){
             e.preventDefault();
             var id = $(this).find(':selected').attr('data-id');
-            var oldCom;
+            var oldComm;
             $.ajax({
                 url:'../order/add_comment.php',
                 method: 'POST',
@@ -125,8 +125,8 @@
                     else{
                         $('#oldComment').fadeIn("slow");
                         $('#oldComment').show();
-                        oldCom = data.slice(0,-11);
-                        $("#oldComment").html(oldCom);
+                        oldComm = data.slice(0,-11);
+                        $("#oldComment").html(oldComm);
                         $('#newComment').fadeIn("slow");
                         $('#newComment').show();
                         $('#id').val(id);
@@ -227,7 +227,7 @@
             });
         }
 
-        //ADD STAFF
+        //ADD PRODUCT STAFF
         function _markProdStaff(){
             swal({
                 title: 'Add Staff Before',
@@ -237,7 +237,7 @@
             });
         }
 
-        //ADD STAFF
+        //ADD DELIVERY STAFF
         function _markDelStaff(){
             swal({
                 title: 'Add Staff Before',
