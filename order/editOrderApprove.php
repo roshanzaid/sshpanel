@@ -176,12 +176,6 @@
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <!-- <div>
-                                <div class="input-group mb-3">
-                                    <select readonly name="_editAppSalesConsultant" id="_editAppSalesConsultant" class="SlectBox form-control">
-                                    </select>
-                                </div>
-                            </div> -->
                             <div class="input-group mb-3">
                                 <select value="Select Category" name="_editAppCat_Id" id="_editAppCat_Id" class="SlectBox form-control">
                                     <?php echo loadMasterCat(); ?>
@@ -242,19 +236,6 @@
         $('#_editAppDeliveryDate').datepicker('setDate', 'today');
 
         $(document).ready(function(){
-            //ORDER STATUS FIRST DROPDOWN CHANGES
-            // $("#orderstatusfilter").change(function(e){
-            //     e.preventDefault();
-            //     var selectedstat = $(this).val();
-            //     $.ajax({
-            //         url:'../order/fetch_order_detail.php',
-            //         method: 'POST',
-            //         data: {selectedstat:selectedstat},
-            //         success:function(data){
-            //             $("#editinvoice").html(data);
-            //         }
-            //     });
-            // });
             
             //ORDER INVOICE SECOND DROPDOWN CHANGES
             var inp = $('#_editAppInvoiceId');
@@ -470,6 +451,9 @@
                     text: 'Check Edited Orders in Tables',
                     type: 'success',
                     confirmButtonColor: '#57a94f'
+                },
+                function loadPage(){
+                    location.reload();
                 });
             }
 
