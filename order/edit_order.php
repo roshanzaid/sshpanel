@@ -43,7 +43,7 @@
         $_editCat_Id = $_POST['_editCat_Id'];
 
 		//DELIVERY DATE CONVERT
-		$deliveryDate = date('Y-m-d',strtotime($_edd));
+		$_editDeliveryDate = date('Y-m-d',strtotime($_edd));
 
         // //GET CURRENT DATE AND USER
         // $insertDate=curdate();
