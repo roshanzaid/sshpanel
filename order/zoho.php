@@ -139,6 +139,7 @@
                             <!--ORDER STATUS-->
                             <div class="input-group mb-3">
                                 <select value='Order Status' name="_zOrderStatus" id="_zOrderStatus" class="SlectBox form-control">
+                                    <option value="CRM">CRM</option>
                                     <option value="Pending">Pending</option>
                                 </select>
                             </div>
