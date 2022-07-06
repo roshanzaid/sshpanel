@@ -279,7 +279,6 @@
 							swatch,
 							payment_term,
 							order_condition,
-							sales_consultant,
 							sales_agreement_path
 						) VALUES (
 							'".$last_id."',
@@ -287,7 +286,6 @@
 							'".$swatchName."',
 							'".$paymentTerms."',
 							'".$condition."',
-							'".$salesconsultant."',
 							'Not Exists'
 						)");
 						if($salesQuery){
