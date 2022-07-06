@@ -118,18 +118,22 @@
          */
         $pdf->SetFont('Arial','',10);
         $pdf->Cell(118,35,'Prime Business Centre - Office #1005 - B',0,0,'L');
-
         $pdf->SetFont('Arial','B',10);
         $pdf->Cell(40,12,'AGREEMENT ID',0,0,'R');
-
         $pdf->SetFont('Arial','',11);
         $pdf->Cell(0,12,$agreement_id,0,0,'R');
-
         $pdf->SetFont('Arial','B',10);
         $pdf->Cell(-32,28,'INV / NO',0,0,'R');
-
         $pdf->SetFont('Arial','',11);
         $pdf->Cell(0,28,$invoice,0,0,'R');
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(-32,45,'DELIVERY DATE',0,0,'R');
+        $pdf->SetFont('Arial','',11);
+        $pdf->Cell(0,45,$deliveryDate,0,0,'R');
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(-32,62,'SALES SOURCE',0,0,'R');
+        $pdf->SetFont('Arial','',11);
+        $pdf->Cell(0,62,$salesName,0,0,'R');
 
         $pdf->Ln(40);
         /**
@@ -140,10 +144,7 @@
          */
         $pdf->SetFont('Arial','',10);
         $pdf->Cell(118,-35,'Jumeira Village Circle, Dubai - UAE',0,0,'L');
-        $pdf->SetFont('Arial','B',10);
-        $pdf->Cell(40,-35,'DELIVERY DATE',0,0,'R');
-        $pdf->SetFont('Arial','',11);
-        $pdf->Cell(0,-35,$deliveryDate,0,0,'R');
+
         $pdf->Ln(-10);
         /**
          * *************************************************************************************************
@@ -293,7 +294,7 @@
          */
         $pdf->SetFont('Arial','B',10);
         $pdf->Cell(120,0,'',0,0,'L');
-        $pdf->Cell(80,0,$salesName,0,0,'C');
+        $pdf->Cell(80,0,$userName,0,0,'C');
         $pdf->Ln(5);
 
         $pdf->Cell(95,0,'------------------------------------------------',0,0,'L');
@@ -304,7 +305,7 @@
         $pdf->Cell(60,0,'CUSTOMER SIGNATURE',0,0,'C');
 
         $pdf->SetFont('Arial','B',10);
-        $pdf->Cell(200,0,'SALES SIGNATURE',0,0,'C');
+        $pdf->Cell(200,0,'ADMIN AUTHORITY',0,0,'C');
 
 
         $pdf->SetY(-1);

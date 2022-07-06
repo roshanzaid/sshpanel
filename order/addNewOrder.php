@@ -17,24 +17,6 @@
     //INCLUDE DIRECTORIES
     include '../base/db.php';
 
-	// //KEEP TRACK ON SESSION VARIABLES
-    // if(!session_id()) session_start();
-
-	// if(isset($_POST['_sp'])){
-	// 	$branchOutput='';
-	// 	$sp = $_POST['_sp'];
-	// 	$sqlQuery = $conn->query("SELECT * FROM user WHERE firstname='".$sp."'");
-	// 	while ($row = mysqli_fetch_array($sqlQuery)){
-	// 		$branch_from = $row['branch_from'];
-	// 	}
-    //     if($branch_from == 'af_dubai'){
-    //         $branchOutput .= '<option value = "Asghar Furniture - Dubai">Asghar Furniture - Dubai</option>';
-    //     }else if($branch_from == 'af_ajman'){
-    //         $branchOutput .= '<option value = "Asghar Furniture - Ajman">Asghar Furniture - Ajman</option>';	
-    //     }
-	// 	echo $branchOutput;
-	// }
-
     function loadBranch(){
         global $conn;
         $branchOutput='';
@@ -88,7 +70,7 @@
 ?>
 <div class="modal-content modal-content-demo">
     <div class="modal-header">
-        <h5 class="modal-title">New Order</h5>
+        <h5 class="modal-title">Order Detail</h5>
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     </div>
     <div class="modal-body">
@@ -151,6 +133,7 @@
                         <div class="col-lg-6">
                             <div class="input-group mb-3">
                                 <select value='Order Status' name="_newStatus" id="_newStatus" class="SlectBox form-control">
+                                    <option value="CRM">CRM</option>
                                     <option value="Pending">Pending</option>
                                 </select>
                             </div>
@@ -205,10 +188,10 @@
                         </select>
                     </div>
                     <div class="input-group mb-3">
-                        <textarea value="Enter Payment Terms" id="_newPaymentTerms" name="_newPaymentTerms" class="form-control" placeholder="Enter Payment Terms" rows="3"></textarea>
+                        <textarea value="Enter Payment Terms" id="_newPaymentTerms" name="_newPaymentTerms" class="form-control" placeholder="Enter Payment Terms" rows="2"></textarea>
                     </div>
                     <div class="input-group mb-3">
-                        <textarea value="Conditions Here" id="_newCondition" name="_newCondition" class="form-control" placeholder="Conditions Here" rows="3"></textarea>
+                        <textarea value="Conditions Here" id="_newCondition" name="_newCondition" class="form-control" placeholder="Conditions Here" rows="2"></textarea>
                     </div>
                     <div>
                         <div class="input-group mb-3">
@@ -221,6 +204,45 @@
                                 </label>
                             </div>
                             <div class="preview"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h5 class="modal-title">Customer Detail</h5>
+            <div class="row row-sm">
+                <div class="col-lg-12">
+                    <div class="row row-sm">
+                        <!-- <div class="col-lg-4">
+                            <select value="Select Existing Customer" name="_customerFilter" id="_customerFilter" class="form-control select2-show-search select2-dropdown">
+                                <?php echo loadCustomer();?>
+                                <input hidden id="_customerId" name="_customerId" class="form-control"type="text">
+                            </select>
+                        </div> -->
+                        <div class="col-lg-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Name</span> 
+                                <input aria-label="customerName" id="_newCustomerName" name="_newCustomerName" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Address</span> 
+                                <input aria-label="customerAddress" id="_newCustomerAddress" name="_newCustomerAddress"  class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-sm">
+                        <div class="col-lg-6">
+                            <div class="input-group mb-3">
+                                <input aria-label="customerAddress" id="_newCustomerEmail" name="_newCustomerEmail" placeholder="customer@asgharfurniture.ae" class="form-control" type="text">
+                                <span class="input-group-text" id="basic-addon2">@example.com</span> 
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Phone</span> 
+                                <input aria-label="customerAddress" id="_newCustomerPhone" name="_newCustomerPhone" placeholder="(000) 000-0000" class="form-control" type="text">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -271,19 +293,6 @@
 
     //FORM SUBMISSION
     $(document).ready(function(){
-        
-        // $("#_newSalesConsultant").change(function(e){
-        //     e.preventDefault();
-        //     var _sp = $(this).val();
-        //     $.ajax({
-        //         url: '../order/addNewOrder.php',
-        //         method: 'POST',
-        //         data: {_sp:_sp},
-        //         success: function (data) {
-        //             $("#_newItemFrom").html(data);
-        //         }
-        //     });
-        // });
 
         $("#formNewOrder").on('submit', function(e){
             e.preventDefault();
@@ -335,6 +344,10 @@
             var _images = $("#_newOrderImage").val();
             var _swatchImage = $("#_newSwatchImage").val();
             var _categoryId = $("#_newCat_Id").val();
+            var _customerName = $("#_newCustomerName").val();
+            var _customerAddress = $("#_newCustomerAddress").val();
+            var _customerEmail = $("#_newCustomerEmail").val();
+            var _customerPhone = $("#_newCustomerPhone").val();
 
             if(_invoiceId == ''){
                 _warningMessage = "Invoice ID is Left Empty";
@@ -420,7 +433,27 @@
                 _warningMessage = "Category Left Empty";
                 emptyFieldAlert(_warningMessage, _warningText);
                 flag = false
-            }      
+            }
+            else if(_customerName == ''){
+                _warningMessage = "Enter Customer Name";
+                emptyFieldAlert(_warningMessage, _warningText);
+                flag = false
+            }
+            else if(_customerAddress == ''){
+                _warningMessage = "Customer Address is Empty";
+                emptyFieldAlert(_warningMessage, _warningText);
+                flag = false
+            }
+            else if(_customerEmail == ''){
+                _warningMessage = "Customer Email is Needed";
+                emptyFieldAlert(_warningMessage, _warningText);
+                flag = false
+            }
+            else if(_customerPhone == ''){
+                _warningMessage = "Enter Customer Phone / Mobile";
+                emptyFieldAlert(_warningMessage, _warningText);
+                flag = false
+            }
             else{
                 successMessage();
             }
