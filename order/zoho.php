@@ -601,11 +601,13 @@
             $('#_zProductName').val('');
             //SELECTORS
             $('#_zOrderStatus').html('<option value="Pending">Pending</option>');
+            $('select.SlectBox')[0].sumo.reload();
             $('select.SlectBox')[1].sumo.reload();
             $('select.SlectBox')[2].sumo.reload();
             $('select.SlectBox')[3].sumo.reload();
             $('select.SlectBox')[4].sumo.reload();
             $('select.SlectBox')[5].sumo.reload();
+            $('select.SlectBox')[0].sumo.reload();
             $("#_zOrderNote").val('');
             $("#_zPaymentTerms").val('');
             $("#_zCondition").val('');
