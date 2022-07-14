@@ -82,6 +82,7 @@
                                                                     <th class="border-bottom-0">Consult</th>
                                                                     <th class="border-bottom-0">Image</th>
                                                                     <th class="border-bottom-0">Comment</th>
+                                                                    <th class="border-bottom-0">Action</th>
                                                                 </tr>
                                                             </thead>
                                                         </table>
@@ -142,27 +143,30 @@
         <script src="../assets/plugins/sumoselect/jquery.sumoselect.js"></script>
         <script src="../assets/plugins/rating/jquery.rating-stars.js"></script>
         <script src="../assets/plugins/rating/jquery.barrating.js"></script>
+        <!-- Sweet-alert js  -->
+		<script src="../assets/plugins/sweet-alert/sweetalert.min.js"></script>
+		<script src="../assets/js/sweet-alert.js"></script>
         <!-- custom js -->
         <script src="../assets/js/custom.js"></script>
         <!-- Internal Modal js-->
         <script src="../assets/js/modal.js"></script>
 
         <script type="text/javascript">
-            function getQueryParams(qs) {
-                qs = qs.split('+').join(' ');
-                var params =    {},
-                tokens,
-                re = /[?&]?([^=]+)=([^&]*)/g;
+            // NO MAN LINES
+            // function getQueryParams(qs) {
+            //     qs = qs.split('+').join(' ');
+            //     var params =    {},
+            //     tokens,
+            //     re = /[?&]?([^=]+)=([^&]*)/g;
                                                 
-                while (tokens = re.exec(qs)) {
-                        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
-                }
-                return params;
-            }
-                           
-            window.onload = function (e) {
-                var query = getQueryParams(document.location.search);
-            };
+            //     while (tokens = re.exec(qs)) {
+            //             params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+            //     }
+            //     return params;
+            // }           
+            // window.onload = function (e) {
+            //     var query = getQueryParams(document.location.search);
+            // };
 
             $(document).ready(function() {
 
@@ -174,50 +178,125 @@
 				//SENT TO FILE	- FETCH.PHP WITH NEXT STATUS: DELIVERED TO CHANGE THE STATUSES WITH BUTTONS ON ACTION COLUMN
 				//DRAWCALLBACK	- TABLE ROWS WILL BE CATEGORIZED WITH DELIVERY DATES
 				//ROWCALLBACK	- TABLE ROWS WILL BE HIGHLIGHTED IF THE ORDER RECORD IS EDITED/FROM SHARAG DG/NOON
-                var query = getQueryParams( document.location.search );
-                if ( query ) {
-                    if ( query.search ) {
-                        var table = $('#deliverytable').val( query.search ).DataTable( {
-                            "processing":   true,
-                            "serverSide":   true,
-                            "paging"    :   true,
-                            "retrieve"  :   true,
-                            "iDisplayLength" : 100,
-                            "ajax": {
-                                url  :"../order/fetch.php",
-                                type : "POST",
-                                data : {
-                                    status : 'Out for Delivery',
-                                    nextStatus : 'Delivered'
-                                }
-                            },
-                            "rowCallback": function( row, data, index ) {
-                                if ( data[7] == "Sharaf DG" )
-                                {
-                                    $('td', row).css('background-color', '#b5b5de');
-                                }
-                                else if ( data[7] != "Sharaf DG" )
-                                {
-                                    $('td', row).css('background-color', 'white');
-                                }
-                            },
-                            "drawCallback": function ( settings ) {
-                                var api = this.api();
-                                var rows = api.rows( {page:'current'} ).nodes();
-                                var last=null; 
-                                api.column(1, {page:'current'} ).data().each( function ( group, i ) {
-                                    if ( last !== group ) {
-                                        $(rows).eq( i ).before(
-                                            '<tr class="group"><td class="delback"colspan="13">'+'<strong> Delivery On : '+group+'</strong></td></tr>'
-                                        );
-                                        last = group;
-                                    }
-                                } );
-                            },
+                
+                //NO MAN LINES
+                // var query = getQueryParams( document.location.search );
+                // if ( query ) {
+                //     if ( query.search ) {
+                //         var table = $('#deliverytable').val( query.search ).DataTable( {
+                //             "processing":   true,
+                //             "serverSide":   true,
+                //             "paging"    :   true,
+                //             "retrieve"  :   true,
+                //             "iDisplayLength" : 100,
+                //             "ajax": {
+                //                 url  :"../order/fetch.php",
+                //                 type : "POST",
+                //                 data : {
+                //                     status : 'Out for Delivery',
+                //                     nextStatus : 'Delivered'
+                //                 }
+                //             },
+                //             "rowCallback": function( row, data, index ) {
+                //                 if ( data[7] == "Sharaf DG" )
+                //                 {
+                //                     $('td', row).css('background-color', '#b5b5de');
+                //                 }
+                //                 else if ( data[7] != "Sharaf DG" )
+                //                 {
+                //                     $('td', row).css('background-color', 'white');
+                //                 }
+                //             },
+                //             "drawCallback": function ( settings ) {
+                //                 var api = this.api();
+                //                 var rows = api.rows( {page:'current'} ).nodes();
+                //                 var last=null; 
+                //                 api.column(1, {page:'current'} ).data().each( function ( group, i ) {
+                //                     if ( last !== group ) {
+                //                         $(rows).eq( i ).before(
+                //                             '<tr class="group"><td class="delback"colspan="13">'+'<strong> Delivery On : '+group+'</strong></td></tr>'
+                //                         );
+                //                         last = group;
+                //                     }
+                //                 } );
+                //             },
+                //         } );
+                //         table.search(query.search).draw();
+                //     }
+                // }
+
+                var table = $('#deliverytable').DataTable( {
+					"processing": 	true,
+					"serverSide": 	true,
+					"paging"	:	true,
+					"searching"	:	true,
+					"sDom": 'Brtip',
+					"buttons": [
+						
+					],
+					"iDisplayLength"	:	100,
+					"ajax": {
+						url  :"../order/fetch.php",
+						type : "POST",
+						data : {
+							status : 'Out for Delivery'
+						}
+					},
+                    "rowCallback": function( row, data, index ) {
+                        if ( data[7] == "Sharaf DG" )
+                        {
+                            $('td', row).css('background-color', '#b5b5de');
+                        }
+                        else if ( data[7] != "Sharaf DG" )
+                        {
+                            $('td', row).css('background-color', 'white');
+                        }
+                    },
+                    "drawCallback": function ( settings ) {
+                        var api = this.api();
+                        var rows = api.rows( {page:'current'} ).nodes();
+                        var last=null; 
+                        api.column(1, {page:'current'} ).data().each( function ( group, i ) {
+                            if ( last !== group ) {
+                                $(rows).eq( i ).before(
+                                    '<tr class="group"><td class="delback"colspan="13">'+'<strong> Delivery On : '+group+'</strong></td></tr>'
+                                );
+                                last = group;
+                            }
                         } );
-                        table.search(query.search).draw();
-                    }
-                }
+                    },
+                    "autoWidth": false,
+					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11,12 ] } ],
+					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "3%" }]
+                } );
+                
+                $(document).on('click','#statusChangeNext',function(event){
+                    event.preventDefault();
+                    var statusid = $(this).attr('data-id');
+                    var prodStat;
+                    $.ajax({
+                        url     : '../order/statusChange.php',
+                        method  : 'POST',
+                        dataType: 'json',
+                        data    : {statusid : statusid},
+                        success : function(response)
+                        {
+                            if(response.index == 1){
+                                swal({
+                                    title: 'Status Changed',
+                                    text: 'Order Status is Changed Succesfully',
+                                    type: 'success',
+                                    confirmButtonColor: '#57a94f',
+                                    allowOutsideClick: true
+                                });
+                                    $('#deliverytable').DataTable().ajax.reload();
+                            }
+                            else{
+                                console.log('AUL AUL AUL');
+                            }
+                        }
+                    });
+				});
             });
         </script>
     </body>
