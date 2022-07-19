@@ -11,7 +11,7 @@
 	* @PARAM	{STRING}	LOGFILE								//LOG FILE PATH
 	* @PARAM	{STRING}	ID									//EDITED STAFF ID FETCH FROM EDITSTAFF.PHP
 	* @PARAM	{STRING}	STAFFNAME							//NEW STAFF NAME ENTERED FROM EDITSTAFF.PHP
-	* @PARAM	{STRING}	_STAFFASSOCIATE						//CHECK ORDER_STAFF TABLE IF THE STAFF IS EDITED IS ADDED FOR AN ORDER ALREADY
+	* @PARAM	{STRING}	_STAFFASSOCIATE						//CHECK ORDER_STAFF_PRODUCTION TABLE AND ORDER_STAFF_DELIVERY TABLE IF THE STAFF IS EDITED IS ADDED FOR AN ORDER ALREADY
 	* @PARAM	{STRING}	STAFF_NAME							//QUERY TO GET STAFF
 	* @PARAM	{STRING}	_DBSTAFF_NAME						//VARIABLE TO CHECK STAFF FROM DB
 	*
@@ -32,7 +32,9 @@
 		$id = $_POST['id'];
 		$staffName = $_POST['e_staffname'];
 		//CHECK IF STAFF IS ASSOCIATED WITH ORDERS
-		$_staffAssociate = $conn->query("SELECT * FROM order_staff WHERE staff_id = ".$id);
+		$_staffAssociate = $conn->query("SELECT osp.staff_id, osd.del_staff_id 
+										FROM order_staff_production as osp, order_staff_delivery as osd 
+										WHERE osp.staff_id = $id OR osd.del_staff_id =$id");
 
 		//GET STAFF NAME
 		$staff_Name=mysqli_query($conn,"SELECT * FROM staff WHERE id = ".$id);

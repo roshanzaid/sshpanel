@@ -31,8 +31,9 @@
 	 * @PARAM {STRING}	MESSAGE
 	 */
 	function app_log($message){
+        $logPath  = "../log/log_";
 		date_default_timezone_set('Asia/Dubai');
-		$logfile = 'log/log_'.date('d-M-Y').'.log';
+		$logfile = $logPath.date('d-M-Y').'.log';
 		file_put_contents($logfile, $message . "\n", FILE_APPEND);
 	}
 
