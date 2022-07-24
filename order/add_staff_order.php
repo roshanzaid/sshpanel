@@ -44,7 +44,7 @@
 					$insertProdStaff = $conn->query("INSERT INTO order_staff_production (order_id, staff_id,active_status) VALUES ('".$order_id."', '".$staffId."',1)");
 					date_default_timezone_set('Asia/Dubai');
 					app_log("'".date('d-m-Y H:i:s')."' : Production Staff for Order ID '".$order_id."' 
-					as Staff ID : '".$staff_id."' and Active Status : 1 
+					as Staff ID : '".$staffId."' and Active Status : 1 
 					by User : '".$_userName."' ROOT: add_staff_order.php");
 				}
 				if($insertProdStaff){
@@ -69,7 +69,7 @@
 					$insertDelStaff = $conn->query("INSERT INTO order_staff_delivery (order_id, del_staff_id,active_status) VALUES ('".$order_id."', '".$delStaffId."',1)");
 					date_default_timezone_set('Asia/Dubai');
 					app_log("'".date('d-m-Y H:i:s')."' : Delivery Staff for Order ID '".$order_id."' 
-					as Staff ID : '".$staff_id."' and Active Status : 1 
+					as Staff ID : '".$delStaffId."' and Active Status : 1 
 					by User : '".$_userName."' ROOT: add_staff_order.php");
 				}
 				if($insertDelStaff){
