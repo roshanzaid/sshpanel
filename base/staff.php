@@ -390,12 +390,10 @@
 						}
 					},
 					"rowCallback": function( row, data, index ) {
-						if ( data[7] == "Sharaf DG" )
-						{
+						if ( data[9] == "Sharaf DG" ){
 							$('td', row).css('background-color', '#b5b5de');
 						}
-						else if ( data[7] != "Sharaf DG" )
-						{
+						else if ( data[9] != "Sharaf DG" ){
 							$('td', row).css('background-color', 'white');
 						}
 					},
@@ -441,12 +439,10 @@
 						}
 					},
 					"rowCallback": function( row, data, index ) {
-						if ( data[7] == "Sharaf DG" )
-						{
+						if ( data[9] == "Sharaf DG" ){
 							$('td', row).css('background-color', '#b5b5de');
 						}
-						else if ( data[7] != "Sharaf DG" )
-						{
+						else if ( data[9] != "Sharaf DG" ){
 							$('td', row).css('background-color', 'white');
 						}
 					},
@@ -492,12 +488,10 @@
 						}
 					},
 					"rowCallback": function( row, data, index ) {
-						if ( data[7] == "Sharaf DG" )
-						{
+						if ( data[9] == "Sharaf DG" ){
 							$('td', row).css('background-color', '#b5b5de');
 						}
-						else if ( data[7] != "Sharaf DG" )
-						{
+						else if ( data[9] != "Sharaf DG" ){
 							$('td', row).css('background-color', 'white');
 						}
 					},
@@ -550,15 +544,23 @@
 						api.column(1, {page:'current'} ).data().each( function ( group, i ) {
 							if ( last !== group ) {
 								$(rows).eq( i ).before(
-									'<tr class="group"><td class="delback"colspan="13">'+'<strong> Delivery On : '+group+'</strong></td></tr>'
+									'<tr class="group"><td class="delback"colspan="12">'+'<strong> Delivery On : '+group+'</strong></td></tr>'
 								);
 								last = group;
 							}
 						} );
 					},
+					"rowCallback": function( row, data, index ) {
+						if ( data[9] == "Sharaf DG" ){
+							$('td', row).css('background-color', '#b5b5de');
+						}
+						else if ( data[9] != "Sharaf DG" ){
+							$('td', row).css('background-color', 'white');
+						}
+					},
 					"autoWidth": false,
-					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11,12 ] } ],
-					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "6%" },{ "sWidth": "2%" }]
+					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11 ] } ],
+					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" },{ "sWidth": "3%" },{ "sWidth": "15%" }]
 				} );
 
 				//INITIATING TABLE DELIVERED
@@ -597,6 +599,14 @@
 							}
 						} );
 					},
+					"rowCallback": function( row, data, index ) {
+						if ( data[9] == "Sharaf DG" ){
+							$('td', row).css('background-color', '#b5b5de');
+						}
+						else if ( data[9] != "Sharaf DG" ){
+							$('td', row).css('background-color', 'white');
+						}
+					},
 					"autoWidth": false,
 					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11 ] } ],
 					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" },{ "sWidth": "3%" },{ "sWidth": "15%" }]
@@ -628,15 +638,28 @@
 					},
 					"rowCallback": function( row, data, index ) {
 						if ( data[9] == "Sharaf DG" ){
-							$('td', row).css('background-color', '#fcf9c7');
+							$('td', row).css('background-color', '#b5b5de');
 						}
-						else if ( data[9] == "NooN" ){
-							$('td', row).css('background-color', '#fcf9c7');
+						else if ( data[9] != "Sharaf DG" ){
+							$('td', row).css('background-color', 'white');
 						}
 					},
+					"drawCallback": function ( settings ) {
+						var api = this.api();
+						var rows = api.rows( {page:'current'} ).nodes();
+						var last=null; 
+						api.column(1, {page:'current'} ).data().each( function ( group, i ) {
+							if ( last !== group ) {
+								$(rows).eq( i ).before(
+									'<tr class="group"><td class="delback"colspan="12">'+'<strong> Delivery On : '+group+'</strong></td></tr>'
+								);
+								last = group;
+							}
+						} );
+					},
 					"autoWidth": false,
-					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11,12 ] } ],
-					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "6%" },{ "sWidth": "2%" }]
+					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11 ] } ],
+					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" },{ "sWidth": "3%" },{ "sWidth": "15%" }]
 				} );
 
 				//INITIATING TABLE CANCELLED
@@ -663,6 +686,14 @@
 							nextStatus : 'New Order'
 						}
 					},
+					"rowCallback": function( row, data, index ) {
+						if ( data[9] == "Sharaf DG" ){
+							$('td', row).css('background-color', '#b5b5de');
+						}
+						else if ( data[9] != "Sharaf DG" ){
+							$('td', row).css('background-color', 'white');
+						}
+					},
 					"drawCallback": function ( settings ) {
 						var api = this.api();
 						var rows = api.rows( {page:'current'} ).nodes();
@@ -670,15 +701,15 @@
 						api.column(1, {page:'current'} ).data().each( function ( group, i ) {
 							if ( last !== group ) {
 								$(rows).eq( i ).before(
-									'<tr class="group"><td class="delback"colspan="13">'+'<strong> Delivery On : '+group+'</strong></td></tr>'
+									'<tr class="group"><td class="delback"colspan="12">'+'<strong> Delivery On : '+group+'</strong></td></tr>'
 								);
 								last = group;
 							}
 						} );
 					},
 					"autoWidth": false,
-					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11,12 ] } ],
-					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "3%" },{ "sWidth": "17%" },{ "sWidth": "6%" },{ "sWidth": "2%" }]
+					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11,11 ] } ],
+					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" },{ "sWidth": "3%" },{ "sWidth": "15%" }]
 				} );
 
 				//INITIATING TABLE ALL PRODUCTS
@@ -742,6 +773,55 @@
 						{ "sWidth": "4%" },
 						{ "sWidth": "2%" }
 					]
+				} );
+
+				//INITIATING TABLE CRM
+				//IDISPLAYLENGTH - TABLE WILL DISPLAY 100 RECORDS, HAS BEEN PAGINATED
+				//SENT TO FILE	- FETCH.PHP WITH STATUS: CRM TO FETCH ALL CRM RECORDS
+				//DRAWCALLBACK	- TABLE ROWS WILL BE CATEGORIZED WITH DELIVERY DATES
+				//ROWCALLBACK	- TABLE ROWS WILL BE HIGHLIGHTED IF THE ORDER RECORD IS EDITED/FROM SHARAG DG/NOON
+				var tablenine = $('#examplenine').DataTable( {
+					"processing": 	true,
+					"serverSide": 	true,
+					"paging"	:	true,
+					"searching"	:	true,
+					"sDom": 'Brtip',
+					"buttons": [
+						
+					],
+					"iDisplayLength"	:	100,
+					"ajax": {
+						url  :"../order/fetch.php",
+						type : "POST",
+						data : {
+							status : 'CRM',
+							nextStatus : ''
+						}
+					},
+					"rowCallback": function( row, data, index ) {
+						if ( data[9] == "Sharaf DG" ){
+							$('td', row).css('background-color', '#b5b5de');
+						}
+						else if ( data[9] != "Sharaf DG" ){
+							$('td', row).css('background-color', 'white');
+						}
+					},
+					"drawCallback": function ( settings ) {
+						var api = this.api();
+						var rows = api.rows( {page:'current'} ).nodes();
+						var last=null; 
+						api.column(1, {page:'current'} ).data().each( function ( group, i ) {
+							if ( last !== group ) {
+								$(rows).eq( i ).before(
+									'<tr class="group"><td class="delback"colspan="12">'+'<strong> Delivery On : '+group+'</strong></td></tr>'
+								);
+								last = group;
+							}
+						} );
+					},
+					"autoWidth": false,
+					"aoColumnDefs": [{ "bSortable": false, "bSearchable": false, "aTargets": [2,4,5,6,7,8,9,10,11 ] } ],
+					"aoColumns": [{ "sWidth": "5%" }, { "sWidth": "5%" },{ "sWidth": "2%" }, { "sWidth": "3%" },{ "sWidth": "2%" },{ "sWidth": "20%" },{ "sWidth": "12%" },{ "sWidth": "3%" },{ "sWidth": "15%" },{ "sWidth": "5%" },{ "sWidth": "3%" },{ "sWidth": "15%" }]
 				} );
 
 				//@ORDERSEARCHTEXT IS THE TEXT FIELD WHERE THE INVOICES WILL BE SEARCHED
