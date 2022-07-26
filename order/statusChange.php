@@ -22,14 +22,12 @@
 		file_put_contents($logfile, $message . "\n", FILE_APPEND);
 	}
 
-    $_userId=1;
     $isApproved=1;
-    $firstname='';
     if(isset($_SESSION['userName'])){
         $username = $_SESSION['userName'];
         $userDetail= $conn->query("SELECT * FROM user WHERE username='".$username."'");
         while($row = mysqli_fetch_assoc($userDetail)) {
-            $_userId = $row['username'];
+            $_userId = $row['id'];
 			$_userName = $row['username'];
             $_firstName = $row['firstname'];
             $_userRole = $row['userrole'];
@@ -506,12 +504,10 @@
         if($agreementPath !== 'Not Exists'){
             if($pendingStatus == "Pending"){
                 $pendingStatusQuery = $conn->query("UPDATE product SET pstatus = 'New Order' WHERE id=".$confirmOrder);
-
                 if($pendingStatusQuery){
                     $newQuery = $conn->query("INSERT INTO order_approval(order_id, consultant_id, is_approved) VALUES('".$confirmOrder."','".$_userId."','".$isApproved."')");
                     if($newQuery){
                         $response['index'] = 2;
-
                         date_default_timezone_set('Asia/Dubai');
                         app_log("'".date('d-m-Y H:i:s')."' : Order '".$confirmOrder."'
                         is Approved - SUCCESS - by User : '".$_userName."' ROOT: statusChange.php");
@@ -527,64 +523,5 @@
         }
 
     }
-
-    //  OLD MATERIAL WITH BUTTON
-    //  if(isset($_POST['materialid'])){
-    //     $materialid = $_POST['materialid'];
-    //     $sql = "SELECT * FROM product WHERE id='".$materialid."'";
-    //     $query=mysqli_query($conn,$sql);
-    //     $row = mysqli_fetch_array($query);
-
-    //     $materialStatus = $row['pstatus'];
-    //     $materialAvilabilityQuery="";
-
-    //     if($materialStatus !== "Yes"){
-    //         $materialAvilabilityQuery = "update product set material = 'Yes' where id=".$materialid;
-    //     }
-    //     $result = mysqli_query($conn,$materialAvilabilityQuery);
-    // 	if($result){
-    //         echo "<script type='text/javascript'>alert('DONE')</script>";
-    // 	}
-    // }
-
-        // if(isset($_POST['statusPrev'])){
-    //     $prevStatusId = $_POST['statusPrev'];
-    //     $sql = $conn->query("SELECT * FROM product WHERE id='".$prevStatusId."'");
-    //     $row = mysqli_fetch_array($sql);
-    //     $orderStatus = $row['pstatus'];
-    //     $statusChangeQuery = "";
-    //     $statusChangeMessage = "";
-    
-    //     if($orderStatus == "In Production"){
-    //         $statusChangeQuery = $conn->query("UPDATE product SET pstatus = 'New Order', statusChangedBy = '$username' WHERE id=".$prevStatusId);
-    //         $statusChangeMessage = "Order status has been changed to New Order";
-    //         $response['index'] = 1;
-    //     }
-    //     else if($orderStatus == "Ready"){
-    //         $statusChangeQuery = $conn->query("UPDATE product SET pstatus = 'In Production', statusChangedBy = '$username' WHERE id=".$prevStatusId);
-    //         $statusChangeMessage = "Order status has been changed to In Production";
-    //         $response['index'] = 1;
-            
-    //     }
-    //     else if($orderStatus == "Out for Delivery"){
-    //         $statusChangeQuery = $conn->query("UPDATE product SET pstatus = 'Ready', statusChangedBy = '$username' WHERE id=".$prevStatusId);
-    //         $statusChangeMessage = "Order status has been changed to Ready";
-    //         $response['index'] = 1;
-    //     }
-    //     else if($orderStatus == "On Hold"){
-    //         $statusChangeQuery = $conn->query("UPDATE product SET pstatus = 'New Order', statusChangedBy = '$username' WHERE id=".$prevStatusId);
-    //         $statusChangeMessage = "Order status has been changed to New Order";
-    //         $response['index'] = 1;
-    //     }
-    //     else if($orderStatus == "Cancelled"){
-    //         $statusChangeQuery = $conn->query("UPDATE product SET pstatus = 'New Order', statusChangedBy = '$username' WHERE id=".$prevStatusId);
-    //         $statusChangeMessage = "Order status has been changed to New Order";
-    //         $response['index'] = 1;
-    //     }
-    //     if($statusChangeQuery){
-    //         $response['index'] = 1;
-    //     }
-    // }
-    // header('Content-type: application/json');
     echo json_encode($response);
 ?>
